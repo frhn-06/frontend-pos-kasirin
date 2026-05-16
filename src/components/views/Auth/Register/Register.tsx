@@ -30,25 +30,19 @@ const Register = () => {
 
 
     return (
-      // <div className="w-full min-h-screen flex flex-col-reverse lg:flex-row-reverse">
-      //   <div className="bg-amber-600">
 
-      //   </div>
-
-      //   <div className="w-full lg:min-w-120 bg-blue-700">
-
-      //   </div>
-      // </div>
 
       <div className="px-4 py-12 flex justify-center items-center h-full">
         <div className=" w-full max-w-90">
 					<Card fullWidth>
 						<form onSubmit={handleSubmitRegister(onRegister)}>
 							<CardHeader>
-								Daftar Akun
+								<h1 className="font-semibold text-xl text-base">
+                  Daftar Akun
+                </h1>
 							</CardHeader>
 
-							<CardBody className="gap-4">
+							<CardBody className="gap-4 text-base">
 								{errors?.root && (
 									<p className="text-danger text-sm">
 										{errors?.root?.message}
@@ -60,7 +54,7 @@ const Register = () => {
 								)} />
 
 								<Controller control={control} name="userName" render={({field}) => (
-									<Input {...field} label="Nama User" variant="bordered" isInvalid={!!errors?.userName} errorMessage={errors?.userName?.message}/>
+									<Input {...field} label="Nama User" variant="bordered" isInvalid={!!errors?.userName} errorMessage={errors?.userName?.message} />
 								)} />
 
 								<Controller control={control} name="fullName" render={({field}) => (

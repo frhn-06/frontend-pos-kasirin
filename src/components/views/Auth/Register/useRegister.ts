@@ -1,8 +1,9 @@
+import { toasterContext } from "@/context/toasterContext";
 import AuthService from "@/services/auth.service";
 import { IRegister } from "@/types/auth";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { useForm } from "react-hook-form";
 
 import * as yup from 'yup';
@@ -17,6 +18,8 @@ const schemaRegister = yup.object({
 
 
 const useRegister = () => {
+
+    const {setToaster} = useContext(toasterContext);
     
     const [hidePassword, sethidePassword] = useState({password: true, confirmPassword: true});
 
@@ -45,9 +48,17 @@ const useRegister = () => {
             setError("root", {
                 type: "server",
                 message: error.message
-            })
+            });
+            setToaster({
+                type: "error",
+                message: error.message
+            }) 
         },
         onSuccess: () => {
+            setToaster({
+                type: "success",
+                message: "success to register"
+            })
             reset();
         }
     })
