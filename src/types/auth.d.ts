@@ -7,4 +7,19 @@ interface IRegister {
 }
 
 
-export type {IRegister}
+interface ILogin {
+    identifier: string;
+    password: string;
+}
+
+
+interface ISesson extends Session {
+    id: string;
+    role: string;
+    storeId: string | null;
+    userName: string;
+    fullName: string;
+    email: string;
+}
+
+export type {IRegister, ILogin, ISesson}

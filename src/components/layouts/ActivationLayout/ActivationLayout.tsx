@@ -16,7 +16,9 @@ const ActivationLayout = (props: TypeProps) => {
           <PageHead title={title} />
 
           <main>
-            {children}
+            <div className="flex justify-center items-center min-h-screen">
+              {children}
+            </div>
           </main>
         </>
     )

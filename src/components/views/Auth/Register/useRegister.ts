@@ -57,7 +57,7 @@ const useRegister = () => {
         onSuccess: () => {
             setToaster({
                 type: "success",
-                message: "success to register"
+                message: "registrasi berhasil"
             })
             reset();
         }

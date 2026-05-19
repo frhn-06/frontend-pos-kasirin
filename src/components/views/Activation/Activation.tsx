@@ -1,7 +1,11 @@
-const Activation = () => {
+const Activation = (props: {status: "success" | "failed"}) => {
+    const {
+      status
+    } = props;
+
     return (
         <div>
-          activasi
+          {status === "success" ? "sukses aktivasi" : "gagal aktivasi"}
         </div>
     )
 }

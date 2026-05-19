@@ -24,7 +24,12 @@ const AuthLayout = (props: TypeProps) => {
               </div>
 
               <div className=" lg:min-w-120 lg:min-h-screen">
-                {children}
+                
+                <div className="px-4 py-12 flex justify-center items-center h-full">
+                  <div className=" w-full max-w-90">
+                    {children}          
+                  </div>
+                </div>
               </div>
 						</div>
 
