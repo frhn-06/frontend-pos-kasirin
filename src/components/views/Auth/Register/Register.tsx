@@ -26,7 +26,7 @@ const Register = () => {
 		const router = useRouter();
 
 		useEffect(() => {
-			if(isSuccessRegister) router.push("/auth/activation");
+			if(isSuccessRegister) router.push("/auth/register/success");
 		},[isSuccessRegister])
 
 
