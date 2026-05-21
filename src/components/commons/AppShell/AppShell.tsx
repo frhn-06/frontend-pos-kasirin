@@ -30,7 +30,7 @@ const AppShell = (props: TypeProps) => {
           type: "",
           message: ""
         })
-      }, 800);
+      }, 1000);
 
       return () => clearTimeout(timeOut);
     })

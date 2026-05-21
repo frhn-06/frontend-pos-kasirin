@@ -5,6 +5,8 @@ import * as React from "react";
 import {HeroUIProvider} from "@heroui/react"
 import AppShell from "@/components/commons/AppShell";
 
+import { SessionProvider } from "next-auth/react";
+
 import {
   QueryClient,
   QueryClientProvider,
@@ -15,14 +17,16 @@ const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
   return(
-    <QueryClientProvider client={queryClient}>
-      <HeroUIProvider>
-        <ToasterProvider>
-          <AppShell>
-            <Component {...pageProps} />        
-          </AppShell>
-        </ToasterProvider>
-      </HeroUIProvider>
-    </QueryClientProvider>
+    <SessionProvider>
+      <QueryClientProvider client={queryClient}>
+        <HeroUIProvider>
+          <ToasterProvider>
+            <AppShell>
+              <Component {...pageProps} />        
+            </AppShell>
+          </ToasterProvider>
+        </HeroUIProvider>
+      </QueryClientProvider>
+    </SessionProvider>
   )
 }

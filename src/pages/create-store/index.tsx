@@ -1,17 +1,12 @@
-import { Button } from "@heroui/react";
-import { signOut } from "next-auth/react";
+import CreateStoreLayout from "@/components/layouts/CreateStoreLayout";
+import CreateStore from "@/components/views/CreateStore";
+
 
 const PageCreateStore = () => {
     return (
-        <div>
-            <div>
-                create store
-            </div>
-
-            <Button onPress={() => signOut()}>
-                Keluar
-            </Button>
-        </div>
+        <CreateStoreLayout title="Create store">
+            <CreateStore />
+        </CreateStoreLayout>
     )
 }
 

@@ -1,9 +1,6 @@
 import { Button } from "@heroui/react";
 import { signOut } from "next-auth/react";
 
-
-
-
 const PageDashboard = () => {
     return (
         <section>

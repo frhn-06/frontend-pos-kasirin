@@ -10,8 +10,6 @@ export async function proxy(req: NextRequest) {
         req: req,
         secret: process.env.AUTH_SECRET
     });
-
-    console.log(token);
     
     const pathaname = req.nextUrl.pathname;
 

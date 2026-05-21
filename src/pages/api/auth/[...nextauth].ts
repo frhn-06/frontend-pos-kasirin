@@ -167,7 +167,7 @@ export default NextAuth({
             if(user) {
                 token.user = user;
             }
-
+            
             return token;
         },
 
