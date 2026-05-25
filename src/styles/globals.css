@@ -7,6 +7,42 @@
 .text-base {
   @apply text-gray-700
 }
+
+
+
+
+.Burger-atas-active {
+  @apply -rotate-45 translate-y-2 transition-all duration-300
+}
+
+.Burger-tengah-active {
+  @apply opacity-0 transition-all duration-300
+}
+
+.Burger-bawah-active {
+  @apply rotate-45 -translate-y-2 transition-all duration-300
+}
+
+.Burger-atas-nonactive {
+  @apply -rotate-0 translate-y-0 transition-all duration-300
+}
+
+.Burger-tengah-nonactive {
+  @apply opacity-100 transition-all duration-300
+}
+
+.Burger-bawah-nonactive {
+  @apply rotate-0 -translate-y-0 transition-all duration-300
+}
+
+.Sidebar-active {
+  @apply -translate-x-0 transition-all duration-300 lg:-translate-x-0
+}
+
+.Sidebar-nonactive {
+  @apply -translate-x-full transition-all duration-300 lg:-translate-x-0
+}
+
 /* :root {
   --background: #ffffff;
   --foreground: #171717;

@@ -20,6 +20,7 @@ interface ISesson extends Session {
     userName: string;
     fullName: string;
     email: string;
+    avatar;
 }
 
 export type {IRegister, ILogin, ISesson}

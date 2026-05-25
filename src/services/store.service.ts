@@ -5,7 +5,7 @@ import { IStore } from "@/types/store";
 const StoreService = {
     create: (payload: IStore) => instance.post(`${endpoint.STORE}`, payload),
 
-    getStore: () => instance.post(`${endpoint.STORE}`),
+    getStore: () => instance.get(`${endpoint.STORE}`),
 
     update: (storeId: string, payload: IStore) => instance.put(`${endpoint.STORE}/${storeId}`, payload),
 }

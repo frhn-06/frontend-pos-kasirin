@@ -3,9 +3,7 @@ import useCreateStore from "./useCreateStore"
 import { Controller } from "react-hook-form"
 import { useEffect } from "react"
 import { useRouter } from "next/router"
-import { getToken } from "next-auth/jwt"
 import { signOut, useSession } from "next-auth/react"
-import { ISesson } from "@/types/auth"
 
 const CreateStore = () => {
     const {
