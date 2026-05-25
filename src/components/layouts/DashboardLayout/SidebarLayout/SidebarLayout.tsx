@@ -4,7 +4,7 @@ import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { CiLogout } from "react-icons/ci";
-import { Image } from '@heroui/react';
+import { Image, Skeleton } from '@heroui/react';
 import { ISesson } from "@/types/auth";
 
 interface typeList {
@@ -19,7 +19,7 @@ interface TypeProps {
   onClose: () => void;
   isOpen: boolean;
   logo: string;
-
+  isLoadLogo: boolean;
 }
 
 const SidebarLayout = (props: TypeProps) => {
@@ -27,7 +27,8 @@ const SidebarLayout = (props: TypeProps) => {
       items,
       onClose,
       isOpen,
-      logo
+      logo,
+      isLoadLogo
     } = props;
 
     const router = useRouter();
@@ -35,7 +36,12 @@ const SidebarLayout = (props: TypeProps) => {
         <div className=" bg-white w-full border-r-2 border-gray-200/70 h-screen overflow-hidden flex flex-col justify-between">
           <div className="overflow-auto">
             <div className="w-full h-24 flex justify-between items-start p-4">
-              <img src={logo} className="h-full mx-auto" />
+              {isLoadLogo ? (
+                <Skeleton className="h-16 w-36 mx-auto"></Skeleton>
+              ) : (
+                <img src={logo} className="h-full mx-auto" />
+              )}
+              
               
 
               <div onClick={onClose}>

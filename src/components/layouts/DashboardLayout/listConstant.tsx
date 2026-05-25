@@ -7,31 +7,31 @@ const listConstant = {
         {
             id: "dashboard",
             label: "Dashboard",
-            href: "/dashboard",
+            href: "admin/dashboard",
             icon: <MdSpaceDashboard className="w-full h-full" />
         },
         {
             id: "category",
             label: "Category",
-            href: "/category",
+            href: "admin/category",
             icon: <MdCategory className="w-full h-full" />
         },
         {
             id: "product",
             label: "Product / Menu",
-            href: "/product",
+            href: "admin/product",
             icon: <MdOutlineRestaurantMenu className="w-full h-full" />
         },
         {
             id: "setting",
             label: "Setting",
-            href: "/setting",
+            href: "admin/setting",
             icon: <IoMdSettings className="w-full h-full" />
         },
         {
             id: "transaction",
             label: "transaction",
-            href: "/transaction",
+            href: "admin/transaction",
             icon: <FaWallet className="w-full h-full" />
         },
 

@@ -9,6 +9,7 @@ import Link from "next/link";
 import BurgerToggle from "@/components/ui/BurgerToggle";
 import { useState } from "react";
 import cn from "@/utils/cn";
+import useDashboardLayout from "./useDashboardLayout";
 
 
 interface TypeProps {
@@ -27,6 +28,11 @@ const DashboardLayout = (props: TypeProps) => {
       description,
     } = props;
 
+    const {
+      dataStore,
+      isLoadedStore
+    } = useDashboardLayout();
+
 
     const session = useSession();
 
@@ -43,7 +49,7 @@ const DashboardLayout = (props: TypeProps) => {
           <div className="flex h-full w-full overflow-hidden relative">
 
             <div className={cn("z-10 min-w-70 h-full flex flex-col justify-between fixed lg:sticky transition-all duration-300", {"Sidebar-nonactive" : !isActiveSidebar, "Sidebar-active" : isActiveSidebar})}>
-              <SidebarLayout items={role === "owner" ? listConstant.owner : listConstant.cashier} onClose={() => setActiveSidebar(false)} isOpen={isActiveSidebar} logo={user?.avatar} />
+              <SidebarLayout items={role === "owner" ? listConstant.owner : listConstant.cashier} onClose={() => setActiveSidebar(false)} isOpen={isActiveSidebar} logo={dataStore?.data?.logo} isLoadLogo={isLoadedStore} />
             </div>
 
             <div className="w-full">
