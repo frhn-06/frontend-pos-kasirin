@@ -46,13 +46,13 @@ const DashboardLayout = (props: TypeProps) => {
         <PageHead title={title} />
 
         <section className="h-screen max-w-[2560px] m-auto">
-          <div className="flex h-full w-full overflow-hidden relative">
+          <div className="flex h-full w-full relative overflow-hidden">
 
             <div className={cn("z-10 min-w-70 h-full flex flex-col justify-between fixed lg:sticky transition-all duration-300", {"Sidebar-nonactive" : !isActiveSidebar, "Sidebar-active" : isActiveSidebar})}>
               <SidebarLayout items={role === "owner" ? listConstant.owner : listConstant.cashier} onClose={() => setActiveSidebar(false)} isOpen={isActiveSidebar} logo={dataStore?.data?.logo} isLoadLogo={isLoadedStore} />
             </div>
 
-            <div className="w-full">
+            <div className="w-full overflow-y-auto min-h-screen">
               <div className="h-24 bg-white flex items-center p-4 justify-between">
                 <div className="flex items-center-safe gap-4">
                   <div onClick={() => setActiveSidebar(!isActiveSidebar)}>
@@ -75,17 +75,17 @@ const DashboardLayout = (props: TypeProps) => {
                     <Avatar showFallback name={user?.fullName} src={`${user?.avatar}`} />                    
                   </Link>
                 </Skeleton>
-               
               </div>
 
-              <div className="h-full  overflow-auto">
-                {children}                  
+              <div className="bg-gray-100 min-h-svh">
+                {children}
+
               </div>
-              <div className="w-full h-12 bg-white flex justify-center items-center">
-                <p className="text-sm text-gray-600">
-                  &copy; 2026 | Kasirin
-                </p>
-              </div>
+                <div className="w-full h-12 bg-white flex justify-center items-center">
+                  <p className="text-sm text-gray-600">
+                    &copy; 2026 | Kasirin
+                  </p>
+                </div>
             </div>
           </div>
         </section>

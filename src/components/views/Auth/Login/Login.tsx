@@ -26,7 +26,7 @@ const Login = () => {
 
     useEffect(() => {
       if(isSuccessLogin) {
-        router.push(`/dashboard`)
+        router.push(`/owner/dashboard`)
       }
     },[isSuccessLogin])
 
