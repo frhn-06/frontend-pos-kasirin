@@ -11,15 +11,17 @@ const useCategory = () => {
         return data;
     }
 
-    const {data: dataCategories, isLoading: isLoadingCategories} = useQuery({
+    const {data: dataCategories, isLoading: isLoadingCategories, refetch:refetchCategories, isRefetching:isRefetchingCategories} = useQuery({
         queryKey: ["Categories"],
         queryFn: getCategories,
-        enabled: router.isReady
+        enabled: true
     })
 
     return {
         dataCategories,
-        isLoadingCategories   
+        isLoadingCategories,
+        refetchCategories,
+        isRefetchingCategories
     }
 }
 

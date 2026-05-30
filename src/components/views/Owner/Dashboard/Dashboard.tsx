@@ -7,6 +7,9 @@ const Dashboard = () => {
         <Button onPress={() => signOut()} >
           keluar
         </Button>
+        <div className="bg-red-500 text-white p-10">
+  TEST
+</div>
       </div>
     )
 }

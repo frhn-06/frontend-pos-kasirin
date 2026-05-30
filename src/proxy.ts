@@ -20,16 +20,22 @@ export async function proxy(req: NextRequest) {
         }
     }
 
-    if(pathaname.startsWith("/dashboard")) {
+    if(pathaname.startsWith("/owner")) {
         if(!token) {
             const url = new URL("/auth/login", req.url);
-            url.searchParams.set("callbackUrl", pathaname);
             return NextResponse.redirect(url);
         }
 
         if(token && !(token?.user as ISesson).storeId) {
             const url = new URL("/create-store", req.url)
             return NextResponse.redirect(url)
+        }
+    }
+
+    if(pathaname.startsWith("/cashier")) {
+        if(!token) {
+            const url = new URL("/auth/login", req.url);
+            return NextResponse.redirect(url);
         }
     }
 
@@ -51,16 +57,22 @@ export async function proxy(req: NextRequest) {
     }
 
     if(pathaname === "/") {
-        if(token) {
-            const url = new URL("/dashboard", req.url);
+        if(token && (token?.user as unknown as ISesson).role === "owner") {
+            const url = new URL("/owner/dashboard", req.url);
             return NextResponse.redirect(url);
         }
+
+        if(token && (token?.user as unknown as ISesson).role !== "owner") {
+            const url = new URL("/cashier/dashboard", req.url);
+            return NextResponse.redirect(url)
+        }
     }
+
 
     return NextResponse.next();
     
 }
 
 export const config = {
-    matcher: ["/auth/login", "/auth/register", "/dashboard/:path*", "/", "/create-store"]
+    matcher: ["/auth/login", "/auth/register", "/owner/:path*", "/cashier/:path*", "/", "/create-store"]
 }

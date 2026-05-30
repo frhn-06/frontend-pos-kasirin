@@ -6,6 +6,8 @@ import { Controller } from "react-hook-form";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+import { ISesson } from "@/types/auth";
 
 const Login = () => {
     const {
@@ -24,11 +26,7 @@ const Login = () => {
 
     const router = useRouter();
 
-    useEffect(() => {
-      if(isSuccessLogin) {
-        router.push(`/owner/dashboard`)
-      }
-    },[isSuccessLogin])
+
 
 
     return (

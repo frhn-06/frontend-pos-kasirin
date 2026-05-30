@@ -1,18 +1,21 @@
 import TableUi from "@/components/ui/TableUi";
-import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/react";
+import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure } from "@heroui/react";
 import { ReactNode, useCallback } from "react";
 import { CiMenuKebab } from "react-icons/ci";
 import useCategory from "./useCategory";
 import column_list from "./category.constant";
-import { useRouter } from "next/router";
+import AddCategory from "./AddCategory";
 
 const Category = () => {
     const {
       dataCategories,
-      isLoadingCategories   
+      isLoadingCategories,
+
+      refetchCategories,
+      isRefetchingCategories
     } = useCategory();
 
-    const router = useRouter();
+    const modalCategory = useDisclosure();
 
 
     const renderCell = useCallback((data: Record<string, unknown>, column: {label: string; id: string}) => {
@@ -52,8 +55,14 @@ const Category = () => {
             data={dataCategories?.data || []}
             column={column_list}
             renderCell={renderCell}
-            isLoading={isLoadingCategories}
+            isLoading={isLoadingCategories || isRefetchingCategories}
+
+            isCreate
+            textCreate="Tambah Kategori"
+            openCreate={modalCategory.onOpen}
           />
+
+          <AddCategory isOpen={modalCategory.isOpen} onClose={modalCategory.onClose} refetch={refetchCategories} />
         </div>
     )
 }

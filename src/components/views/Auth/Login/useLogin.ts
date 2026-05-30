@@ -36,7 +36,7 @@ const useLogin = () => {
         resolver: yupResolver(schemaLogin)
     })
 
-    const callbackurl :string = router.query.callbackUrl as string || ""
+    const callbackurl :string = router.query.callbackUrl as string || "/"
 
     const login = async (payload: ILogin) => {
         const result = await signIn("credentials", {
@@ -64,12 +64,14 @@ const useLogin = () => {
                 message: error.message
             }) 
         },
-        onSuccess: () => {
+        onSuccess: (data) => {
             setToaster({
                 type: "success",
                 message: "login berhasil"
             })
             reset();
+            console.log(data);
+            router.push(callbackurl)
         }
     })
     
