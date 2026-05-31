@@ -1,10 +1,12 @@
 import TableUi from "@/components/ui/TableUi";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure } from "@heroui/react";
-import { ReactNode, useCallback } from "react";
+import { ReactNode, useCallback, useState } from "react";
 import { CiMenuKebab } from "react-icons/ci";
 import useCategory from "./useCategory";
 import column_list from "./category.constant";
 import AddCategory from "./AddCategory";
+import { useRouter } from "next/router";
+import DeleteCategory from "./DeleteCategory";
 
 const Category = () => {
     const {
@@ -15,7 +17,14 @@ const Category = () => {
       isRefetchingCategories
     } = useCategory();
 
-    const modalCategory = useDisclosure();
+    const router = useRouter();
+
+    const modalAddCategory = useDisclosure();
+
+    const modalDeleteCategory = useDisclosure();
+
+    const [idCategory, setIdCategory] = useState<string | null>(null);
+
 
 
     const renderCell = useCallback((data: Record<string, unknown>, column: {label: string; id: string}) => {
@@ -33,10 +42,10 @@ const Category = () => {
                 <CiMenuKebab />
               </DropdownTrigger>
               <DropdownMenu aria-label="Dynamic Actions">
-                <DropdownItem key="update">
+                <DropdownItem key="update" onClick={() => router.push(`/owner/category/${data._id}`)}>
                   Update
                 </DropdownItem>
-                <DropdownItem key="delete">
+                <DropdownItem key="delete" onClick={() => {modalDeleteCategory.onOpen(); setIdCategory(`${data._id}`)}}>
                   Delete
                 </DropdownItem>
               </DropdownMenu>
@@ -59,10 +68,15 @@ const Category = () => {
 
             isCreate
             textCreate="Tambah Kategori"
-            openCreate={modalCategory.onOpen}
+            openCreate={modalAddCategory.onOpen}
           />
 
-          <AddCategory isOpen={modalCategory.isOpen} onClose={modalCategory.onClose} refetch={refetchCategories} />
+          <AddCategory isOpen={modalAddCategory.isOpen} onClose={modalAddCategory.onClose} refetch={refetchCategories} />
+
+         
+
+          <DeleteCategory categoryId={`${idCategory}`} onClose={modalDeleteCategory.onClose} isOpen={modalDeleteCategory.isOpen} refetch={refetchCategories} />
+
         </div>
     )
 }

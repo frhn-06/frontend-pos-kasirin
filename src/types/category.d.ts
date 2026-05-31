@@ -4,4 +4,8 @@ interface ICategory {
     img?: string;
 }
 
-export type {ICategory};
+interface IcategoryUpdate extends ICategory {
+    oldImg?: string;
+}
+
+export type {ICategory, IcategoryUpdate};
