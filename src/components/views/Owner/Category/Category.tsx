@@ -69,6 +69,8 @@ const Category = () => {
             isCreate
             textCreate="Tambah Kategori"
             openCreate={modalAddCategory.onOpen}
+
+            emptyContent="Kategori kosong"
           />
 
           <AddCategory isOpen={modalAddCategory.isOpen} onClose={modalAddCategory.onClose} refetch={refetchCategories} />

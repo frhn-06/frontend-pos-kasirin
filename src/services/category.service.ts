@@ -11,7 +11,7 @@ const categoryService = {
 
     update: (id:string, payload: ICategory) => instance.put(`${endpoint.CATEGORY}/${id}/update`, payload),
 
-    deleteById: (id: string) => instance.delete(`${endpoint.CATEGORY}/${id}/remove`)
+    deleteById: (id: string) => instance.delete(`${endpoint.CATEGORY}/${id}/remove`),
 }
 
 

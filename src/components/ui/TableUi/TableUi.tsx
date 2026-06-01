@@ -1,5 +1,6 @@
-import { Button, Input, Spinner, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@heroui/react";
-import { useMemo } from "react";
+import { LIMIT_DEFAULT, LIST_LIMIT } from "@/utils/constanta";
+import { Button, Input, Pagination, Select, SelectItem, Spinner, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@heroui/react";
+import { ChangeEvent, useMemo } from "react";
 import { IoSearch } from "react-icons/io5";
 
 
@@ -9,12 +10,26 @@ interface TypeProps {
   renderCell: (data: Record<string, unknown>, column: {label: string; id: string}) => React.ReactNode,
   isLoading: boolean;
 
-  isCreate?: boolean;
+  showCreate?: boolean;
   textCreate?: string;
   openCreate: () => void;
 
-  isSearch?: boolean,
   placeholderSearch?: string;
+
+  emptyContent: string;
+
+  currentLimit?: string;
+  currentPage?: string | number;
+
+  onChangeLimit?: (e:ChangeEvent<HTMLSelectElement>) => void;
+
+  totalPage?: number;
+
+  showLimit?: boolean;
+  showPagination?: boolean;
+  showSearch?: boolean;
+
+  onChangeSearch?: (e: ChangeEvent<HTMLInputElement>) => void; 
 }
 
 const TableUi = (props: TypeProps) => {
@@ -24,34 +39,78 @@ const TableUi = (props: TypeProps) => {
       renderCell,
       isLoading,
 
-      isCreate,
+      showCreate,
       textCreate = "Tambah",
       openCreate,
 
-      isSearch,
-      placeholderSearch = "Cari"
+      placeholderSearch = "Cari",
+
+      emptyContent,
+
+      currentLimit,
+      currentPage,
+
+      onChangeLimit,
+
+      totalPage,
+
+      showLimit,
+      showPagination,
+      showSearch,
+
+      onChangeSearch
     } = props;
 
 
     const topContent = useMemo(() => {
       return (
         <div className="flex flex-col lg:flex-row justify-between gap-4">
-          {isSearch && (
-            <div className="max-w-90 " >
-              <Input placeholder={placeholderSearch} variant="bordered" className="w-full bg-white rounded-2xl" startContent={(
+          {showSearch && (
+            <div className="max-w-100 " >
+              <Input placeholder={placeholderSearch} variant="bordered" className="w-full bg-white rounded-2xl" onChange={onChangeSearch} startContent={(
                 <IoSearch />
               )} />
             </div>
           )}
           
-          {isCreate && (
+          {showCreate && (
             <Button className="bg-blue-500 text-white" onPress={openCreate}>
               {textCreate}
             </Button>
           )}
         </div>
       )
-    },[])
+    },[onChangeSearch, openCreate])
+
+
+    const bottomContent = useMemo(() => {
+      return (
+        <div className="flex flex-col gap-4 lg:flex-row justify-between">
+          {showLimit && (
+            <Select
+            className="min-w-24 max-w-xs bg-white rounded-2xl"
+            variant="bordered"
+            items={LIST_LIMIT}
+            selectedKeys={[`${currentLimit}`]}
+            startContent={<p className='text-sm'>limit:</p>}
+            disallowEmptySelection
+            selectionMode="single"
+            onChange={onChangeLimit}
+            >
+              {(limit) => (
+                <SelectItem key={limit.key}>
+                  {limit.label}
+                </SelectItem>
+              ) }
+            </Select>
+          )}
+
+          {showPagination && (
+            <Pagination variant="bordered"  initialPage={1} total={totalPage || 1} />
+          )}
+        </div>
+      )
+    },[LIST_LIMIT, currentLimit, onChangeLimit, totalPage, showLimit, showPagination])
 
     return (
 
@@ -62,13 +121,13 @@ const TableUi = (props: TypeProps) => {
           </div>
         )}
 
-        <Table aria-label="table for category" fullWidth topContent={topContent} topContentPlacement="outside">
+        <Table aria-label="table for category" fullWidth topContent={topContent} topContentPlacement="outside" bottomContent={bottomContent} bottomContentPlacement="outside">
           <TableHeader className="bg-blue-400">
             {column.map((c: {label: string; id: string}) => (
               <TableColumn key={c.id} className="bg-blue-400/30 text-gray-800">{c.label}</TableColumn>
             ))}
           </TableHeader>
-          <TableBody emptyContent={"Kategori kosong"}> 
+          <TableBody emptyContent={emptyContent}> 
             {data?.map((d) => (
               <TableRow key={`${d._id}`}>
                 {column.map((c: {label: string; id: string}) => (

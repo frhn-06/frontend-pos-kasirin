@@ -1,7 +1,6 @@
 import mediaService from "@/services/media.service";
 import { useMutation } from "@tanstack/react-query"
-import { Form } from "react-hook-form";
-import { object } from "yup"
+
 
 const useMediaHandler = () => {
     const addOneImage = async (file: File, callback: (url: string) => void) => {

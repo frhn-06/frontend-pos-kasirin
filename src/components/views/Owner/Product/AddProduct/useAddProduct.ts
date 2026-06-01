@@ -2,21 +2,28 @@
 import { toasterContext } from '@/context/toasterContext'
 import useMediaHandler from '@/hooks/useMediaHandler'
 import categoryService from '@/services/category.service'
+import productService from '@/services/product.service'
 import { ICategory } from '@/types/category'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { useRouter } from 'next/router'
 import { ChangeEvent, useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
-const schemaCategory = yup.object({
+const schemaProduct = yup.object({
     name: yup.string().required("nama tidak boleh kosong"),
-    img: yup.string().required("foto tidak boleh kosong")
+    img: yup.string().required("foto tidak boleh kosong"),
+    price: yup.number().required("harga tidak boleh kosong"),
+    categoryId: yup.string().required("kategori harus diisi"),
+    description: yup.string(),
 })
 
-const useAddCategory = () => {
+const useAddProduct = () => {
 
     const toaster = useContext(toasterContext);
+
+    const router = useRouter();
 
     const {
         mutateAddOneImage,
@@ -28,8 +35,8 @@ const useAddCategory = () => {
         isSuccessRemoveOneImage
     } = useMediaHandler();
 
-    const {control, handleSubmit:handleSubmitCategory, formState: {errors}, setValue, watch, setError, reset} = useForm({
-        resolver: yupResolver(schemaCategory)
+    const {control, handleSubmit:handleSubmitProduct, formState: {errors}, setValue, watch, setError, reset} = useForm({
+        resolver: yupResolver(schemaProduct)
     })
 
 
@@ -66,13 +73,13 @@ const useAddCategory = () => {
     }
 
 
-    const createCategory =  async(payload: ICategory) => {
-        const {data} = await categoryService.create(payload);
+    const createProduct =  async(payload: ICategory) => {
+        const {data} = await productService.create(payload);
         return data;
     }
 
-    const {mutate:mutateCreateCategory, isPending:isPendingCreateCategory, isSuccess:isSuccessCreateCategory} = useMutation({
-        mutationFn: (payload: ICategory) => createCategory(payload),
+    const {mutate:mutateCreateProduct, isPending:isPendingCreateProduct, isSuccess:isSuccessCreateProduct} = useMutation({
+        mutationFn: (payload: ICategory) => createProduct(payload),
         onError: (error) => {
             toaster.setToaster({
                 type: "error",
@@ -86,14 +93,26 @@ const useAddCategory = () => {
         onSuccess: () => {
             toaster.setToaster({
                 type: "success",
-                message: "berhasil membuat kategori"
+                message: "berhasil membuat produk"
             });
             reset();
         }
     })
 
-    const onCreateCategory = (payload: ICategory) => {
-        mutateCreateCategory(payload);
+
+    const getCategoriesByStoreId = async () => {
+        const {data} = await categoryService.getAll();
+        return data;
+    }
+
+    const {data: dataCategoriesInputAdd, isLoading:isLoadingCategoriesInputAdd} = useQuery({
+        queryKey: ["CategoriesForInputCreate"],
+        queryFn: getCategoriesByStoreId,
+        enabled: router.isReady
+    })
+
+    const onCreateProduct = (payload: ICategory) => {
+        mutateCreateProduct(payload);
     }
 
     return {
@@ -108,14 +127,17 @@ const useAddCategory = () => {
         handleRemoveImg,
 
         control,
-        handleSubmitCategory,
+        handleSubmitProduct,
         errors,
         reset,
 
-        isPendingCreateCategory,
-        isSuccessCreateCategory,
-        onCreateCategory
+        isPendingCreateProduct,
+        isSuccessCreateProduct,
+        onCreateProduct,
+
+        dataCategoriesInputAdd,
+        isLoadingCategoriesInputAdd
     }
 }
 
-export default useAddCategory
+export default useAddProduct

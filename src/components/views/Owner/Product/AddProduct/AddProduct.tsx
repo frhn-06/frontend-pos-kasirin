@@ -1,15 +1,16 @@
 import InputFile from "@/components/ui/InputFile";
-import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Spinner } from "@heroui/react";
-import useAddCategory from "./useAddCategory";
+import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Select, SelectItem, Spinner, Textarea } from "@heroui/react";
 import { Controller } from "react-hook-form";
 import { useEffect } from "react";
+import useAddProduct from "./useAddProduct";
+import { ICategory } from "@/types/category";
 
 interface TypeProps {
   isOpen: boolean;
   onClose: () => void;
   refetch: () => void;
 }
-const AddCategory = (props: TypeProps) => {
+const AddProduct = (props: TypeProps) => {
     const {
       isOpen,
       onClose,
@@ -29,22 +30,25 @@ const AddCategory = (props: TypeProps) => {
         handleRemoveImg,
 
         control,
-        handleSubmitCategory,
+        handleSubmitProduct,
         errors,
         reset,
 
-        isPendingCreateCategory,
-        isSuccessCreateCategory,
-        onCreateCategory
-    } = useAddCategory();
+        isPendingCreateProduct,
+        isSuccessCreateProduct,
+        onCreateProduct,
+
+        dataCategoriesInputAdd,
+        isLoadingCategoriesInputAdd
+    } = useAddProduct();
 
     useEffect(() => {
-      if(isSuccessCreateCategory) {
+      if(isSuccessCreateProduct) {
         onClose();
         reset();
         refetch();
       }
-    },[isSuccessCreateCategory])
+    },[isSuccessCreateProduct]);
 
     const onCloseModal = () => {
       onClose();
@@ -53,10 +57,10 @@ const AddCategory = (props: TypeProps) => {
 
     return (
         <Modal isOpen={isOpen} onClose={onCloseModal} placement="center">
-          <form encType="multipart/form-data" onSubmit={handleSubmitCategory(onCreateCategory)}>
+          <form encType="multipart/form-data" onSubmit={handleSubmitProduct(onCreateProduct)}>
             <ModalContent>
               <ModalHeader>
-                Tambah Kategori
+                Tambah Produk
               </ModalHeader>
 
               <ModalBody>
@@ -67,8 +71,24 @@ const AddCategory = (props: TypeProps) => {
                 )}
 
                 <Controller control={control} name="name" render={({field}) => (
-                  <Input {...field} label="Nama" labelPlacement="outside" placeholder="nama kategori" variant="bordered" isInvalid={!!errors.name} errorMessage={errors.name?.message} />
+                  <Input {...field} label="Nama" labelPlacement="outside" placeholder="nama produk" variant="bordered" isInvalid={!!errors.name} errorMessage={errors.name?.message} />
                 )}/>
+
+                <Controller control={control} name="categoryId" render={({field}) => (
+                  <Select {...field} className="w-full" label="Kategori" labelPlacement="outside-top" placeholder="kategori" disallowEmptySelection variant="bordered">
+                    {dataCategoriesInputAdd?.data?.map((category: ICategory) => (
+                      <SelectItem key={category._id}>{category.name}</SelectItem>
+                    ))}
+                  </Select>
+                )} />
+
+                <Controller control={control} name="price" render={({field}) => (
+                  <Input {...field} value={field.value ? field.value.toString() : ""} type="number" label="Harga" labelPlacement="outside" placeholder="Rp. " variant="bordered" isInvalid={!!errors.price} errorMessage={errors.price?.message} />
+                )}/>
+
+                <Controller control={control} name="description" render={({field}) => (
+                  <Textarea {...field} value={field.value ? field.value.toString() : ""} label="Deskripsi" labelPlacement="outside" placeholder="deskripsi..." variant="bordered" isInvalid={!!errors.description} errorMessage={errors.description?.message} />
+                )} />
 
             
                 <Controller control={control} name="img" render={({field}) => (
@@ -87,8 +107,6 @@ const AddCategory = (props: TypeProps) => {
 
                     isInvalid={!!errors.name} 
                     errorMessage={errors.name?.message}
-
-                    
                   />
                 )} />
                 
@@ -99,7 +117,7 @@ const AddCategory = (props: TypeProps) => {
                   Kembali
                 </Button>
                 <Button className="bg-blue-500 text-white" type="submit">
-                  {isPendingCreateCategory ? <Spinner color="default" size="sm" />: "Simpan" }
+                  {isPendingCreateProduct ? <Spinner color="default" size="sm" />: "Simpan" }
                 </Button>
               </ModalFooter>
             </ModalContent>
@@ -109,4 +127,4 @@ const AddCategory = (props: TypeProps) => {
     )
 }
 
-export default AddCategory;
+export default AddProduct;
