@@ -66,7 +66,7 @@ const Category = () => {
             renderCell={renderCell}
             isLoading={isLoadingCategories || isRefetchingCategories}
 
-            isCreate
+            showCreate
             textCreate="Tambah Kategori"
             openCreate={modalAddCategory.onOpen}
 
