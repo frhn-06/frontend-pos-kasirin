@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import column_list from "./product.constant";
 import AddProduct from "./AddProduct";
 import convert from "@/utils/convert";
+import DeleteProduct from "./DeleteProduct";
 
 
 const Product = () => {
@@ -32,7 +33,7 @@ const Product = () => {
 
     const modalAddProduct = useDisclosure();
 
-    // const modalDeleteCategory = useDisclosure();
+    const modalDeleteProduct = useDisclosure();
 
     const [idProduct, setidProduct] = useState<string | null>(null);
 
@@ -69,10 +70,10 @@ const Product = () => {
                 <CiMenuKebab />
               </DropdownTrigger>
               <DropdownMenu aria-label="Dynamic Actions">
-                <DropdownItem key="update" onClick={() => router.push(`/owner/category/${data._id}`)}>
+                <DropdownItem key="update" onClick={() => router.push(`/owner/product/${data._id}`)}>
                   Update
                 </DropdownItem>
-                <DropdownItem key="delete" onClick={() => {setidProduct(`${data._id}`)}}>
+                <DropdownItem key="delete" onClick={() => {modalDeleteProduct.onOpen(); setidProduct(`${data._id}`)}}>
                   Delete
                 </DropdownItem>
               </DropdownMenu>
@@ -117,7 +118,7 @@ const Product = () => {
 
          
 
-          {/* <DeleteCategory categoryId={`${idCategory}`} onClose={modalDeleteCategory.onClose} isOpen={modalDeleteCategory.isOpen} refetch={refetchCategories} /> */}
+          <DeleteProduct productId={`${idProduct}`} onClose={modalDeleteProduct.onClose} isOpen={modalDeleteProduct.isOpen} refetch={refetchProducts} />
 
         </div>
     )

@@ -2,6 +2,7 @@ interface IProduct {
     _id?: string;
     name?: string;
     storeId?: string;
+    img?: string;
     categoryId?: {
         _id?: string;
         name?: string;
@@ -14,4 +15,9 @@ interface IProduct {
     updatedAt?: string;
 }
 
-export type {IProduct}
+interface IProductUpdate extends Omit<IProduct, "categoryId"> {
+    oldImg?: string;
+    categoryId?: string;
+}
+
+export type {IProduct, IProductUpdate}
