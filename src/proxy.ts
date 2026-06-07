@@ -2,8 +2,6 @@ import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 import { JwtExtended } from "./pages/api/auth/[...nextauth]";
 import { ISesson } from "./types/auth";
-// import jwt, { Secret } from 'jsonwebtoken';
-// import {jwtVerify} from 'jose'
 
 export async function proxy(req: NextRequest) {
     const token : JwtExtended | null = await getToken({
@@ -15,9 +13,42 @@ export async function proxy(req: NextRequest) {
 
     if(pathaname === "/auth/login" || pathaname === "/auth/register") {
         if(token) {
-            const url = new URL("/dashboard", req.url);
-            return NextResponse.redirect(url)
+            if((token?.user as ISesson).role === "owner") {
+                const url = new URL("/owner/dashboard", req.url);
+                return NextResponse.redirect(url);
+            } else if ((token?.user as ISesson).role === "cashier") {
+                const url = new URL("/cashier/dashboard", req.url);
+                return NextResponse.redirect(url);
+            }
         }
+    }
+
+    if(pathaname === "/login") {
+        if(token) {
+            if((token?.user as ISesson).role === "owner") {
+                const url = new URL("/owner/dashboard", req.url);
+                return NextResponse.redirect(url);
+            } else if ((token?.user as ISesson).role === "cashier") {
+                const url = new URL("/cashier/dashboard", req.url);
+                return NextResponse.redirect(url);
+            }
+        }
+        const url = new URL("/auth/login", req.url);
+        return NextResponse.redirect(url)
+    }
+
+    if(pathaname === "/register") {
+        if(token) {
+            if((token?.user as ISesson).role === "owner") {
+                const url = new URL("/owner/dashboard", req.url);
+                return NextResponse.redirect(url);
+            } else if ((token?.user as ISesson).role === "cashier") {
+                const url = new URL("/cashier/dashboard", req.url);
+                return NextResponse.redirect(url);
+            }
+        }
+        const url = new URL("/auth/register", req.url);
+        return NextResponse.redirect(url)
     }
 
     if(pathaname.startsWith("/owner")) {
@@ -30,12 +61,24 @@ export async function proxy(req: NextRequest) {
             const url = new URL("/create-store", req.url)
             return NextResponse.redirect(url)
         }
+
+        if(token && (token?.user as ISesson).role === "cashier") {
+            const url = new URL("/cashier/dashboard", req.url)
+            return NextResponse.redirect(url)
+        }
+
+
     }
 
     if(pathaname.startsWith("/cashier")) {
         if(!token) {
             const url = new URL("/auth/login", req.url);
             return NextResponse.redirect(url);
+        }
+
+        if(token && (token?.user as ISesson).role === "owner") {
+            const url = new URL("/owner/dashboard", req.url)
+            return NextResponse.redirect(url)
         }
     }
 
@@ -46,14 +89,15 @@ export async function proxy(req: NextRequest) {
         }
 
         if(token && (token?.user as ISesson).storeId) {
-            const url = new URL("/dashboard", req.url);
-            return NextResponse.redirect(url);
+            if((token?.user as ISesson).role === "owner") {
+                const url = new URL("/owner/dashboard", req.url);
+                return NextResponse.redirect(url);
+            } else if ((token?.user as ISesson).role === "cashier") {
+                const url = new URL("/cashier/dashboard", req.url);
+                return NextResponse.redirect(url);
+            }
         }
 
-        if(token && token.user?.role === "cashier") {
-            const url = new URL("/dashboard", req.url);
-            return NextResponse.redirect(url);
-        }
     }
 
     if(pathaname === "/") {
@@ -74,5 +118,5 @@ export async function proxy(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ["/auth/login", "/auth/register", "/owner/:path*", "/cashier/:path*", "/", "/create-store"]
+    matcher: ["/auth/login", "/auth/register", "/owner/:path*", "/cashier/:path*", "/", "/create-store", "/login", "/register"]
 }
