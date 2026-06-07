@@ -20,4 +20,15 @@ interface IProductUpdate extends Omit<IProduct, "categoryId"> {
     categoryId?: string;
 }
 
-export type {IProduct, IProductUpdate}
+// interface ICartProducts extends Omit<IProduct, "storeId" | "description" | "isAvailible" | "isDeleted" | "createdAt" | "updatedAt">
+interface ICartProducts {
+    _id?: string;
+    name?: string;
+    img?: string;
+    categoryName?: string;
+    price?: number;
+    qty?: number;
+}
+
+
+export type {IProduct, IProductUpdate, ICartProducts}

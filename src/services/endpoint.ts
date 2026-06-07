@@ -3,7 +3,8 @@ const endpoint = {
     STORE: "/store",
     CATEGORY: "/category",
     MEDIA: "/media",
-    PRODUCT: "/product"
+    PRODUCT: "/product",
+    ORDER: "/order"
 }
 
 export default endpoint;
