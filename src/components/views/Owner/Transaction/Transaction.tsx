@@ -1,0 +1,131 @@
+import TableUi from "@/components/ui/TableUi";
+import { Chip, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure } from "@heroui/react";
+import { ReactNode, useCallback, useEffect, useState } from "react";
+import { CiMenuKebab } from "react-icons/ci";
+import { useRouter } from "next/router";
+import column_list from "./transaction.constant";
+import useTransaction from "./useTransaction";
+import { IItems } from "@/types/order";
+import CancelTransaction from "./CancelTransaction";
+
+
+const Transaction = () => {
+    const {
+      dataTransactions,
+      isLoadingTransactions,
+      refetchTransactions,
+      isRefetchingTransactions,
+
+      setUrl,
+
+      currentPage,
+      currentLimit,
+      currentSearch,
+
+      handlePage,
+      handleLimit,
+
+      handleSearch
+    } = useTransaction();
+
+    const router = useRouter();
+
+    const modalAddTransaction = useDisclosure();
+
+    const modalDeleteTransaction = useDisclosure();
+
+    const modalCancelTransaction = useDisclosure();
+
+    const [idTransaction, setidTransaction] = useState<string | null>(null);
+
+    const [statusOrder, setStatusOrder] = useState<string | null>(null)
+
+
+    useEffect(() => {
+      if(router.isReady) {
+        setUrl();
+      }
+    },[router.isReady])
+
+
+    const renderCell = useCallback((data: Record<string, unknown>, column: {label: string; id: string}) => {
+      const value = data[column.id as keyof typeof data]
+
+      switch(column.id) {
+        case "items" : 
+          return (data.items as unknown as IItems[]).length as ReactNode
+        case "status" :
+          if(data.status === "paid") {
+            return <Chip color="success" variant="flat">Success</Chip>
+          } else if(data.status === "cancelled") {
+            return <Chip color="warning" variant="flat">Cancelled</Chip>
+          }
+        case "cashierId" :
+          return (data.cashierId as {_id?:string; fullName?:string}).fullName
+        case "actions" :
+          return (
+            <Dropdown>
+              <DropdownTrigger>
+                <CiMenuKebab />
+              </DropdownTrigger>
+              <DropdownMenu aria-label="Dynamic Actions">
+                {/* <DropdownItem key="update" onClick={() => router.push(`/owner/product/${data._id}`)}>
+                  Update
+                </DropdownItem>
+                <DropdownItem key="delete" onClick={() => {modalDeleteTransaction.onOpen(); setidTransaction(`${data._id}`)}}>
+                  Delete
+                </DropdownItem> */}
+                <DropdownItem key="delete" onClick={() => {
+                  modalCancelTransaction.onOpen(); 
+                  setidTransaction(`${data._id}`);
+                  setStatusOrder(`${data.status}`)
+                }}>
+                  {data.status === "paid" ? "Cancel"  :  "Uncancel"}
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          )
+        default :
+          return value as ReactNode;
+      }
+    },[]) 
+
+
+
+    return (
+        <div className="py-12 px-4 lg:px-8">
+          <TableUi 
+            data={dataTransactions?.data || []}
+            column={column_list}
+            renderCell={renderCell}
+            isLoading={isLoadingTransactions || isRefetchingTransactions}
+
+            emptyContent="Order kosong"
+
+            currentLimit={`${currentLimit}`}
+            currentPage={`${currentPage}`}
+
+            onChangeLimit={handleLimit}
+
+            totalPage={Number(dataTransactions?.Pagination?.totalPage)}
+
+            showLimit
+            showPagination
+            showSearch
+
+            onChangeSearch={handleSearch}
+          />
+
+          {/* <AddProduct isOpen={modalAddTransaction.isOpen} onClose={modalAddTransaction.onClose} refetch={refetchTransactions} /> */}
+
+         
+
+          {/* <DeleteProduct productId={`${idTransaction}`} onClose={modalDeleteTransaction.onClose} isOpen={modalDeleteTransaction.isOpen} refetch={refetchTransactions} /> */}
+
+          <CancelTransaction isOpen={modalCancelTransaction.isOpen} onClose={modalCancelTransaction.onClose} transactionId={`${idTransaction}`} refetch={refetchTransactions} status={`${statusOrder as "cancelled" | "paid"}`} />
+
+        </div>
+    )
+}
+
+export default Transaction

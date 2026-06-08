@@ -12,7 +12,7 @@ interface TypeProps {
 
   showCreate?: boolean;
   textCreate?: string;
-  openCreate: () => void;
+  openCreate?: () => void;
 
   placeholderSearch?: string;
 

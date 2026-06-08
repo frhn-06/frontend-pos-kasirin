@@ -24,12 +24,6 @@ const listConstant = {
             icon: <MdOutlineRestaurantMenu className="w-full h-full" />
         },
         {
-            id: "setting",
-            label: "Setting",
-            href: "/owner/setting",
-            icon: <IoMdSettings className="w-full h-full" />
-        },
-        {
             id: "transaction",
             label: "Transaction",
             href: "/owner/transaction",
@@ -40,6 +34,12 @@ const listConstant = {
             label: "Store",
             href: "/owner/store",
             icon: <IoStorefront className="w-full h-full" />
+        },
+        {
+            id: "setting",
+            label: "Setting",
+            href: "/owner/setting",
+            icon: <IoMdSettings className="w-full h-full" />
         }
     ],
     cashier: [
