@@ -1,4 +1,4 @@
-import { ISesson } from "@/types/auth";
+import { ISesson, IUser } from "@/types/auth";
 import { LIMIT_DEFAULT, LIST_LIMIT, LIST_PAYMENT_ORDER, LIST_STATUS_ORDER } from "@/utils/constanta";
 import { Button, Input, Pagination, Select, SelectItem, Spinner, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@heroui/react";
 import { ChangeEvent, useEffect, useMemo } from "react";
@@ -163,7 +163,7 @@ const TableUi = (props: TypeProps) => {
               selectionMode="single"
               onChange={onChangeCashier}
               >
-                {(item) => (
+                {(item: IUser) => (
                   <SelectItem key={item._id}>
                     {item.fullName}
                   </SelectItem>

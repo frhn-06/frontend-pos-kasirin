@@ -14,7 +14,7 @@ interface ILogin {
 
 
 interface ISesson extends Session {
-    _id: string;
+    id: string;
     role: string;
     storeId: string | null;
     userName: string;
@@ -23,5 +23,8 @@ interface ISesson extends Session {
     avatar;
 }
 
+interface IUser extends ISesson {
+    _id?: string;
+}
 
-export type {IRegister, ILogin, ISesson}
+export type {IRegister, ILogin, ISesson, IUser}
