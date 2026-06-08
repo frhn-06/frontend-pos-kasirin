@@ -7,6 +7,7 @@ import column_list from "./transaction.constant";
 import useTransaction from "./useTransaction";
 import { IItems } from "@/types/order";
 import CancelTransaction from "./CancelTransaction";
+import convert from "@/utils/convert";
 
 
 const Transaction = () => {
@@ -61,7 +62,9 @@ const Transaction = () => {
             return <Chip color="warning" variant="flat">Cancelled</Chip>
           }
         case "cashierId" :
-          return (data.cashierId as {_id?:string; fullName?:string}).fullName
+          return (data.cashierId as {_id?:string; fullName?:string}).fullName;
+        case "createdAt" :
+          return convert.TimeInTable(`${data.createdAt}`);
         case "actions" :
           return (
             <Dropdown>
