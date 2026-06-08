@@ -31,6 +31,12 @@ const column_list = [
         label: "ACTIONS",
         id: "actions"
     }
-]
+];
+
+
+
+
+
+
 
 export default column_list;

@@ -1,6 +1,7 @@
-import { LIMIT_DEFAULT, LIST_LIMIT } from "@/utils/constanta";
+import { ISesson } from "@/types/auth";
+import { LIMIT_DEFAULT, LIST_LIMIT, LIST_PAYMENT_ORDER, LIST_STATUS_ORDER } from "@/utils/constanta";
 import { Button, Input, Pagination, Select, SelectItem, Spinner, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@heroui/react";
-import { ChangeEvent, useMemo } from "react";
+import { ChangeEvent, useEffect, useMemo } from "react";
 import { IoSearch } from "react-icons/io5";
 
 
@@ -20,16 +21,32 @@ interface TypeProps {
 
   currentLimit?: string;
   currentPage?: string | number;
-
-  onChangeLimit?: (e:ChangeEvent<HTMLSelectElement>) => void;
+  currentStatus?: string;
+  currentPayment?: string;
+  currentCashierId?: string;
+  currentStart?: string;
+  currentEnd?: string;
 
   totalPage?: number;
 
   showLimit?: boolean;
-  showPagination?: boolean;
-  showSearch?: boolean;
+  onChangeLimit?: (e:ChangeEvent<HTMLSelectElement>) => void;
 
+  showPagination?: boolean;
+
+  showSearch?: boolean;
   onChangeSearch?: (e: ChangeEvent<HTMLInputElement>) => void; 
+
+  showStatus?: boolean;
+  onChangeStatus?: (e:ChangeEvent<HTMLSelectElement>) => void;
+
+  showCashier?: boolean;
+  listCashier?: ISesson[] | [];
+  isLoadingDataCashier?: boolean;
+  onChangeCashier?: (e:ChangeEvent<HTMLSelectElement>) => void;
+
+  showPayment?: boolean;
+  onChangePayment?: (e:ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const TableUi = (props: TypeProps) => {
@@ -49,38 +66,118 @@ const TableUi = (props: TypeProps) => {
 
       currentLimit,
       currentPage,
-
-      onChangeLimit,
+      currentStatus,
+      currentPayment,
+      currentCashierId,
+      currentStart,
+      currentEnd,
 
       totalPage,
 
       showLimit,
-      showPagination,
-      showSearch,
+      onChangeLimit,
 
-      onChangeSearch
+      showPagination,
+      
+      showSearch,
+      onChangeSearch,
+
+      showStatus,
+      onChangeStatus,
+
+      showCashier,
+      listCashier,
+      isLoadingDataCashier,
+      onChangeCashier,
+
+      showPayment,
+      onChangePayment
     } = props;
 
-
+    
     const topContent = useMemo(() => {
       return (
-        <div className="flex flex-col lg:flex-row justify-between gap-4">
-          {showSearch && (
-            <div className="max-w-100 " >
-              <Input placeholder={placeholderSearch} variant="bordered" className="w-full bg-white rounded-2xl" onChange={onChangeSearch} startContent={(
-                <IoSearch />
-              )} />
-            </div>
-          )}
-          
-          {showCreate && (
-            <Button className="bg-blue-500 text-white" onPress={openCreate}>
-              {textCreate}
-            </Button>
-          )}
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col lg:flex-row justify-between gap-4">
+            {showSearch && (
+              <div className="max-w-100 " >
+                <Input placeholder={placeholderSearch} variant="bordered" className="w-full bg-white rounded-2xl" onChange={onChangeSearch} startContent={(
+                  <IoSearch />
+                )} />
+              </div>
+            )}
+            
+            {showCreate && (
+              <Button className="bg-blue-500 text-white" onPress={openCreate}>
+                {textCreate}
+              </Button>
+            )}
+          </div>
+
+          <div className="flex flex-col lg:flex-row justify-between gap-4">
+            {showStatus && (
+              <Select
+              className="min-w-24 max-w-xs bg-white rounded-2xl"
+              variant="bordered"
+              items={LIST_STATUS_ORDER}
+              selectedKeys={[`${currentStatus}`]}
+              startContent={<p className='text-sm font-semibold'>Status: </p>}
+              disallowEmptySelection
+              selectionMode="single"
+              onChange={onChangeStatus}
+              >
+                {(item) => (
+                  <SelectItem key={item.id}>
+                    {item.label}
+                  </SelectItem>
+                )}
+              </Select>
+            )}
+            
+            {showPayment && (
+              <Select
+              className="min-w-24 max-w-xs bg-white rounded-2xl"
+              variant="bordered"
+              items={LIST_PAYMENT_ORDER}
+              selectedKeys={[`${currentPayment}`]}
+              startContent={<p className='text-sm font-semibold'>Payment: </p>}
+              disallowEmptySelection
+              selectionMode="single"
+              onChange={onChangePayment}
+              >
+                {(item) => (
+                  <SelectItem key={item.id}>
+                    {item.label}
+                  </SelectItem>
+                ) }
+              </Select>
+            )}
+
+            {showCashier && (
+              <Select
+              className="min-w-24 max-w-xs bg-white rounded-2xl"
+              variant="bordered"
+              items={listCashier}
+              selectedKeys={[`${currentCashierId}`]}
+              startContent={<p className='text-sm font-semibold'>Cashier: </p>}
+              selectionMode="single"
+              onChange={onChangeCashier}
+              >
+                {(item) => (
+                  <SelectItem key={item._id}>
+                    {item.fullName}
+                  </SelectItem>
+                ) }
+              </Select>
+            )}
+          </div>
+
+          <div className="flex flex-col lg:flex-row justify-between gap-4">
+
+          </div>
         </div>
       )
-    },[onChangeSearch, openCreate])
+    },[onChangeSearch, openCreate, onChangeStatus, onChangePayment, onChangeCashier, currentStatus, currentPayment, listCashier])
 
 
     const bottomContent = useMemo(() => {

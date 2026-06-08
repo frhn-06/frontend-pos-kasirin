@@ -7,3 +7,39 @@ export const LIST_LIMIT = [
     {key: "18", label: "18"},
     {key: "24", label: "24"},
 ]
+
+
+
+export const LIST_STATUS_ORDER = [
+    {
+        label: "All",
+        id: ""
+    },
+    {
+        label: "Completed",
+        id: "paid"
+    },
+    {
+        label: "Cancelled",
+        id: "cancelled"
+    }
+];
+
+export const LIST_PAYMENT_ORDER = [
+    {
+        label: "All",
+        id: ""
+    },
+    {
+        label: "Cash",
+        id: "cash"
+    },
+    {
+        label: "Qris",
+        id: "qris"
+    },
+    {
+        label: "Transfer",
+        id: "transfer"
+    }
+];

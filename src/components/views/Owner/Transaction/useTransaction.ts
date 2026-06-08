@@ -1,7 +1,10 @@
 import useDebaunce from "@/hooks/useDebaunce";
+import AuthService from "@/services/auth.service";
 import orderService from "@/services/order.service";
+import { ISesson } from "@/types/auth";
 import { LIMIT_DEFAULT, PAGE_DEFAULT } from "@/utils/constanta";
 import { useQuery } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { ChangeEvent } from "react";
 
@@ -10,6 +13,9 @@ const useTransaction = () => {
     const router = useRouter();
 
     const {debaunce} = useDebaunce();
+
+    const session = useSession();
+    const storeId = (session.data?.user as ISesson)?.storeId;
 
     const currentPage = router.query.page;
     const currentLimit = router.query.limit;
@@ -24,7 +30,7 @@ const useTransaction = () => {
         router.replace({
             query: {
                 page: currentPage || PAGE_DEFAULT,
-                limit: currentLimit || LIMIT_DEFAULT,
+                limit: currentLimit || 12,
                 status: currentStatus || "",
                 paymentmethod: currentPaymentMethod || "",
                 cashierid: currentCashierId || "",
@@ -45,6 +51,19 @@ const useTransaction = () => {
         queryKey: ["TransactionsOwner", currentPage, currentLimit, currentStatus, currentPaymentMethod, currentCashierId, currentStart, currentEnd, currentSearch],
         queryFn: getTransaction,
         enabled: router.isReady && !!currentPage && !!currentLimit 
+    })
+
+
+
+    const getCashier = async () => {
+        const {data} = await AuthService.getCashier(`${storeId}`);
+        return data
+    }
+
+    const {data: dataCashier, isLoading: isLoadingCashier} = useQuery({
+        queryKey: ["CashierList"],
+        queryFn: getCashier,
+        enabled: router.isReady
     })
 
 
@@ -81,20 +100,62 @@ const useTransaction = () => {
         }, 1000)
     }
 
+
+    const handleStatus = (e: ChangeEvent<HTMLSelectElement>) => {
+        router.replace({
+            query: {
+                ...router.query,
+                status: e.target.value,
+                page: 1
+            }
+        })
+    }
+
+    const handlePayment = (e: ChangeEvent<HTMLSelectElement>) => {
+        router.replace({
+            query: {
+                ...router.query,
+                paymentmethod: e.target.value,
+                page: 1
+            }
+        })
+    }
+
+    const handleCashier = (e: ChangeEvent<HTMLSelectElement>) => {
+        router.replace({
+            query: {
+                ...router.query,
+                cashierid: e.target.value,
+                page: 1
+            }
+        })
+    }
+
     return {
         dataTransactions,
         isLoadingTransactions,
         refetchTransactions,
         isRefetchingTransactions,
 
+        dataCashier,
+        isLoadingCashier,
+
         setUrl,
         currentPage,
         currentLimit,
         currentSearch,
+        currentStatus,
+        currentPaymentMethod,
+        currentCashierId,
+        currentStart,
+        currentEnd,
 
         handlePage,
         handleLimit,
-        handleSearch
+        handleSearch,
+        handleStatus,
+        handlePayment,
+        handleCashier
     }
 }
 

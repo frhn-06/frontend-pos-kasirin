@@ -17,16 +17,28 @@ const Transaction = () => {
       refetchTransactions,
       isRefetchingTransactions,
 
+      dataCashier,
+      isLoadingCashier,
+
       setUrl,
 
       currentPage,
       currentLimit,
       currentSearch,
+      currentStatus,
+      currentPaymentMethod,
+      currentCashierId,
+      currentStart,
+      currentEnd,
 
       handlePage,
       handleLimit,
 
-      handleSearch
+      handleSearch,
+
+      handleStatus,
+      handlePayment,
+      handleCashier
     } = useTransaction();
 
     const router = useRouter();
@@ -97,27 +109,45 @@ const Transaction = () => {
 
     return (
         <div className="py-12 px-4 lg:px-8">
-          <TableUi 
-            data={dataTransactions?.data || []}
-            column={column_list}
-            renderCell={renderCell}
-            isLoading={isLoadingTransactions || isRefetchingTransactions}
-
-            emptyContent="Order kosong"
-
-            currentLimit={`${currentLimit}`}
-            currentPage={`${currentPage}`}
-
-            onChangeLimit={handleLimit}
-
-            totalPage={Number(dataTransactions?.Pagination?.totalPage)}
-
-            showLimit
-            showPagination
-            showSearch
-
-            onChangeSearch={handleSearch}
-          />
+          {Object.keys(router.query).length > 0 && (
+            <TableUi 
+              data={dataTransactions?.data || []}
+              column={column_list}
+              renderCell={renderCell}
+              isLoading={isLoadingTransactions || isRefetchingTransactions}
+  
+              emptyContent="Order kosong"
+  
+              currentLimit={`${currentLimit}`}
+              currentPage={`${currentPage}`}
+              currentStatus={`${currentStatus}`}
+              currentPayment={`${currentPaymentMethod}`}
+              currentCashierId={`${currentCashierId}`}
+              currentStart={`${currentStart}`}
+              currentEnd={`${currentEnd}`}
+  
+              totalPage={Number(dataTransactions?.Pagination?.totalPage)}
+  
+              showLimit
+              onChangeLimit={handleLimit}
+  
+              showPagination
+              
+              showSearch
+              onChangeSearch={handleSearch}
+  
+              showStatus
+              onChangeStatus={handleStatus}
+  
+              showPayment
+              onChangePayment={handlePayment}
+              
+              showCashier
+              listCashier={dataCashier?.data || []}
+              isLoadingDataCashier={isLoadingCashier}
+              onChangeCashier={handleCashier}
+            />
+          )}
 
           {/* <AddProduct isOpen={modalAddTransaction.isOpen} onClose={modalAddTransaction.onClose} refetch={refetchTransactions} /> */}
 

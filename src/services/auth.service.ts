@@ -13,7 +13,9 @@ const AuthService = {
         headers: {
             Authorization: `Bearer ${token}`
         }
-    })
+    }),
+
+    getCashier: (storeId: string) => instance.get(`/user/${storeId}/cashier`)
 }
 
 export default AuthService;
