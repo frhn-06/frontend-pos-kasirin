@@ -3,6 +3,7 @@ import AuthService from "@/services/auth.service";
 import orderService from "@/services/order.service";
 import { ISesson } from "@/types/auth";
 import { LIMIT_DEFAULT, PAGE_DEFAULT } from "@/utils/constanta";
+import { DateValue } from "@internationalized/date";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -131,6 +132,49 @@ const useTransaction = () => {
         })
     }
 
+    const handleDateStart = (e: DateValue | null) => {
+        router.replace({
+            query: {
+                ...router.query,
+                start: e?.toString(),
+                page: 1
+            }
+        })
+    }
+
+    const handleDateEnd = (e: DateValue | null) => {
+        router.replace({
+            query: {
+                ...router.query,
+                end: e?.toString(),
+                page: 1
+            }
+        })
+    }
+
+
+    const handleClearDateStart = () => {
+        router.replace({
+            query: {
+                ...router.query,
+                start: "",
+                page: 1
+            }
+        })
+    }
+
+    const handleClearDateEnd = () => {
+        router.replace({
+            query: {
+                ...router.query,
+                end: "",
+                page: 1
+            }
+        })
+    }
+
+    
+
     return {
         dataTransactions,
         isLoadingTransactions,
@@ -155,7 +199,11 @@ const useTransaction = () => {
         handleSearch,
         handleStatus,
         handlePayment,
-        handleCashier
+        handleCashier,
+        handleDateStart,
+        handleDateEnd,
+        handleClearDateStart,
+        handleClearDateEnd
     }
 }
 

@@ -1,8 +1,9 @@
 import { ISesson, IUser } from "@/types/auth";
-import { LIMIT_DEFAULT, LIST_LIMIT, LIST_PAYMENT_ORDER, LIST_STATUS_ORDER } from "@/utils/constanta";
-import { Button, Input, Pagination, Select, SelectItem, Spinner, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@heroui/react";
-import { ChangeEvent, useEffect, useMemo } from "react";
-import { IoSearch } from "react-icons/io5";
+import {  LIST_LIMIT, LIST_PAYMENT_ORDER, LIST_STATUS_ORDER } from "@/utils/constanta";
+import { Button, DatePicker, DateValue, Input, Pagination, Select, SelectItem, Spinner, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@heroui/react";
+import {parseDate} from "@internationalized/date";
+import { ChangeEvent, useMemo } from "react";
+import { IoClose, IoSearch, IoCloseCircle } from "react-icons/io5";
 
 
 interface TypeProps {
@@ -47,6 +48,14 @@ interface TypeProps {
 
   showPayment?: boolean;
   onChangePayment?: (e:ChangeEvent<HTMLSelectElement>) => void;
+
+  showDateStart?: boolean;
+  onChangeDateStart?: (e: DateValue | null) => void;
+  onClearDateStart?: () => void;
+  
+  showDateEnd?: boolean;
+  onChangeDateEnd?: (e: DateValue | null) => void;
+  onClearDateEnd?: () => void;
 }
 
 const TableUi = (props: TypeProps) => {
@@ -91,7 +100,15 @@ const TableUi = (props: TypeProps) => {
       onChangeCashier,
 
       showPayment,
-      onChangePayment
+      onChangePayment,
+
+      showDateStart,
+      onChangeDateStart,
+      onClearDateStart,
+
+      showDateEnd,
+      onChangeDateEnd,
+      onClearDateEnd
     } = props;
 
     
@@ -159,7 +176,7 @@ const TableUi = (props: TypeProps) => {
               variant="bordered"
               items={listCashier}
               selectedKeys={[`${currentCashierId}`]}
-              startContent={<p className='text-sm font-semibold'>Cashier: </p>}
+              startContent={<p className='text-sm font-semibold'>Kasir: </p>}
               selectionMode="single"
               onChange={onChangeCashier}
               >
@@ -171,13 +188,47 @@ const TableUi = (props: TypeProps) => {
               </Select>
             )}
           </div>
-
+          
           <div className="flex flex-col lg:flex-row justify-between gap-4">
+            {showDateStart && (
+              <div className="flex gap-1">
+                <div className="bg-white rounded-xl">
+                  <DatePicker
+                    className="max-w-[284px] bg-transparent" 
+                    variant="bordered" 
+                    label={(<p className="font-semibold">Waktu awal</p>)}
+                    value={currentStart ? parseDate(`${currentStart}`) as never : null}
+                    onChange={onChangeDateStart}
+                  />
+                </div>
 
+                {currentStart && (
+                  <IoCloseCircle className="cursor-pointer" onClick={onClearDateStart} />
+                )} 
+              </div>
+            )}
+
+            {showDateEnd && (
+              <div className="flex gap-1">
+                <div className="bg-white rounded-xl">
+                  <DatePicker 
+                    className="max-w-[284px] bg-transparent" 
+                    variant="bordered" 
+                    label={(<p className="font-semibold">Waktu akhir</p>)}
+                    value={currentEnd ? parseDate(`${currentEnd}`) as never : null}
+                    onChange={onChangeDateEnd}
+                  />
+                </div>
+
+              {currentEnd && (
+                <IoCloseCircle className="cursor-pointer" onClick={onClearDateEnd} />
+              )}
+              </div>
+            )}
           </div>
         </div>
       )
-    },[onChangeSearch, openCreate, onChangeStatus, onChangePayment, onChangeCashier, currentStatus, currentPayment, listCashier])
+    },[onChangeSearch, openCreate, onChangeStatus, onChangePayment, onChangeCashier , onChangeDateStart, onChangeDateEnd,currentStatus, currentPayment, listCashier, currentStart, currentEnd, currentEnd])
 
 
     const bottomContent = useMemo(() => {

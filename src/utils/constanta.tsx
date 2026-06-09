@@ -12,7 +12,7 @@ export const LIST_LIMIT = [
 
 export const LIST_STATUS_ORDER = [
     {
-        label: "All",
+        label: "Semua",
         id: ""
     },
     {
@@ -27,7 +27,7 @@ export const LIST_STATUS_ORDER = [
 
 export const LIST_PAYMENT_ORDER = [
     {
-        label: "All",
+        label: "Semua",
         id: ""
     },
     {

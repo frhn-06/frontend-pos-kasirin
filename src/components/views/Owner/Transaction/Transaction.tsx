@@ -38,7 +38,11 @@ const Transaction = () => {
 
       handleStatus,
       handlePayment,
-      handleCashier
+      handleCashier,
+      handleDateStart,
+      handleDateEnd,
+      handleClearDateStart,
+      handleClearDateEnd
     } = useTransaction();
 
     const router = useRouter();
@@ -84,12 +88,6 @@ const Transaction = () => {
                 <CiMenuKebab />
               </DropdownTrigger>
               <DropdownMenu aria-label="Dynamic Actions">
-                {/* <DropdownItem key="update" onClick={() => router.push(`/owner/product/${data._id}`)}>
-                  Update
-                </DropdownItem>
-                <DropdownItem key="delete" onClick={() => {modalDeleteTransaction.onOpen(); setidTransaction(`${data._id}`)}}>
-                  Delete
-                </DropdownItem> */}
                 <DropdownItem key="delete" onClick={() => {
                   modalCancelTransaction.onOpen(); 
                   setidTransaction(`${data._id}`);
@@ -146,6 +144,14 @@ const Transaction = () => {
               listCashier={dataCashier?.data || []}
               isLoadingDataCashier={isLoadingCashier}
               onChangeCashier={handleCashier}
+
+              showDateStart
+              onChangeDateStart={handleDateStart}
+              onClearDateStart={handleClearDateStart}
+
+              showDateEnd
+              onChangeDateEnd={handleDateEnd}
+              onClearDateEnd={handleClearDateEnd}
             />
           )}
 
