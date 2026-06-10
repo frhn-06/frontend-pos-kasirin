@@ -13,7 +13,20 @@ import {
 } from "@tanstack/react-query";
 import ToasterProvider from "@/context/toasterContext";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: true,
+      staleTime: 60 * 1000,
+      gcTime: 10 * 60 * 1000,
+      retry: 1,
+    },
+    mutations: {
+      retry: false,
+    }
+  }
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   return(

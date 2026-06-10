@@ -264,7 +264,7 @@ const TableUi = (props: TypeProps) => {
 
       <div className="relative">
         {isLoading && (
-          <div className="absolute top-0 bottom-0 w-full bg-black/30 rounded-2xl z-10 backdrop-blur-xs flex justify-center items-center min-h-24">
+          <div className="absolute top-0 bottom-0 w-full bg-black/30 rounded-2xl z-9 backdrop-blur-xs flex justify-center items-center min-h-24">
             <Spinner color="primary" />
           </div>
         )}

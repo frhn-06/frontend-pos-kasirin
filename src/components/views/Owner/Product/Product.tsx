@@ -82,7 +82,7 @@ const Product = () => {
         default :
           return value as ReactNode;
       }
-    },[]) 
+    },[router.isReady]) 
 
 
 

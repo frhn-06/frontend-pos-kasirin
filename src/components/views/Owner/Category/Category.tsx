@@ -54,7 +54,7 @@ const Category = () => {
           default :
             return value as ReactNode;
       }
-    },[]) 
+    },[router.isReady]) 
 
 
 

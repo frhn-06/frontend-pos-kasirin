@@ -101,7 +101,7 @@ const Transaction = () => {
         default :
           return value as ReactNode;
       }
-    },[]) 
+    },[router.isReady]) 
 
 
 
@@ -115,6 +115,7 @@ const Transaction = () => {
               isLoading={isLoadingTransactions || isRefetchingTransactions}
   
               emptyContent="Order kosong"
+              placeholderSearch="Cari Invoice Order"
   
               currentLimit={`${currentLimit}`}
               currentPage={`${currentPage}`}
