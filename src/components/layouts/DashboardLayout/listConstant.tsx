@@ -55,6 +55,12 @@ const listConstant = {
             href: "/cashier/pos",
             icon: <FaCartShopping className="w-full h-full" />
         },
+        {
+            id: "transaction",
+            label: "Transaction",
+            href: "/cashier/transaction",
+            icon: <FaWallet className="w-full h-full" />
+        },
     ]
 }
 

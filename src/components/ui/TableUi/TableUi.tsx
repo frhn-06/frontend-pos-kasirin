@@ -3,7 +3,7 @@ import {  LIST_LIMIT, LIST_PAYMENT_ORDER, LIST_STATUS_ORDER } from "@/utils/cons
 import { Button, DatePicker, DateValue, Input, Pagination, Select, SelectItem, Spinner, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@heroui/react";
 import {parseDate} from "@internationalized/date";
 import { ChangeEvent, useMemo } from "react";
-import { IoClose, IoSearch, IoCloseCircle } from "react-icons/io5";
+import { IoSearch, IoCloseCircle } from "react-icons/io5";
 
 
 interface TypeProps {
