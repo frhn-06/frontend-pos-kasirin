@@ -16,28 +16,28 @@ const OrderReceipt = (props: TypeProps) => {
     return (
       <div className="w-full max-w-[380px] bg-white min-h-[300px] flex flex-col items-center p-4 gap-3 text-xs Font-base-struk">
         <div className="relative w-1/2">
-          <Image src={`${order.storeSnapshot.logo}`} alt="store-logo"  className="w-full" width={100} height={100}/>
+          <Image src={`${order?.storeSnapshot?.logo}`} alt="store-logo"  className="w-full" width={100} height={100}/>
         </div>
 
         <div className="text-center">
           <h1 className="text-sm">
-            {order.storeSnapshot.name}
+            {order?.storeSnapshot?.name}
           </h1>
           <p>
-            {order.storeSnapshot.address}
+            {order?.storeSnapshot?.address}
           </p>
         </div>
 
         <div className=" w-full pb-2">
           <div>
             <h3>
-              Pesanan: {order.orderNumber} 
+              Pesanan: {order?.orderNumber} 
             </h3>
             <h3>
-              Cashier: {order.cashierSnapshot.name}
+              Cashier: {order?.cashierSnapshot?.name}
             </h3>
             <h3>
-              Date: {convert.TimeInTable(`${order.createdAt}`)} WIB
+              Date: {convert.TimeInTable(`${order?.createdAt}`)} WIB
             </h3>
           </div>
         </div>
@@ -45,18 +45,18 @@ const OrderReceipt = (props: TypeProps) => {
         <div className=" w-full">
           <table className="w-full border-y-1 border-dashed">
             <tbody>
-              {order.items?.map((i, index) => (
+              {order?.items?.map((i, index) => (
                 <tr key={index}>
                   <td>
                     <p>
-                      {i.productName}
+                      {i?.productName}
                     </p>
                     <p>
-                      {i.qty} X {convert.IDR(Number(i.price))}
+                      {i?.qty} X {convert.IDR(Number(i?.price))}
                     </p>
                   </td>
                   <td>
-                    {convert.IDR(Number(i.qty) * Number(i.price))}
+                    {convert.IDR(Number(i?.qty) * Number(i?.price))}
                   </td>
                 </tr>
               ))}
@@ -66,7 +66,7 @@ const OrderReceipt = (props: TypeProps) => {
                   Subtotal
                 </td>
                 <td>
-                  {convert.IDR(Number(order.totalAmount))}
+                  {convert.IDR(Number(order?.totalAmount))}
                 </td>
               </tr>
               <tr>
@@ -74,7 +74,7 @@ const OrderReceipt = (props: TypeProps) => {
                   Dibayar
                 </td>
                 <td>
-                  {convert.IDR(Number(order.paidAmount))}
+                  {convert.IDR(Number(order?.paidAmount))}
                 </td>
               </tr>
               <tr>
@@ -82,7 +82,7 @@ const OrderReceipt = (props: TypeProps) => {
                   Kembalian
                 </td>
                 <td>
-                  {order.changeAmount !== 0 ? convert.IDR(Number(order.changeAmount)) : "-"}
+                  {order?.changeAmount !== 0 ? convert.IDR(Number(order?.changeAmount)) : "-"}
                 </td>
               </tr>
 
@@ -92,7 +92,7 @@ const OrderReceipt = (props: TypeProps) => {
                   Payment
                 </td>
                 <td>
-                  {order.paymentMethod === "cash" ? "Cash" : order.paymentMethod === "qris" ? "Qris" : "Transfer"}
+                  {order?.paymentMethod === "cash" ? "Cash" : order?.paymentMethod === "qris" ? "Qris" : "Transfer"}
                 </td>
               </tr>
               <tr>
@@ -100,7 +100,7 @@ const OrderReceipt = (props: TypeProps) => {
                   Status
                 </td>
                 <td>
-                  {order.status === "paid" ? "Lunas" : "Tidak Lunas"}
+                  {order?.status === "paid" ? "Lunas" : "Tidak Lunas"}
                 </td>
               </tr>
             </tbody>
