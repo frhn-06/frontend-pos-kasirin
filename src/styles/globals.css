@@ -43,6 +43,16 @@
   @apply -translate-x-full transition-all duration-300 lg:-translate-x-0
 }
 
+
+
+
+
+
+
+.Font-base-struk {
+  font-family: monospace;
+}
+
 /* :root {
   --background: #ffffff;
   --foreground: #171717;

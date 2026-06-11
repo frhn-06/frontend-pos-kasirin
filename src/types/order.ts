@@ -22,6 +22,15 @@ interface IDataOrder {
     items?: IItems[];
     paymentMethod?: string;
     paidAmount?: number | string;
+    storeSnapshot: {
+        name: string;
+        logo: string;
+        address: string;
+        phone: string;
+    };
+    cashierSnapshot: {
+        name: string;
+    }
     totalAmount?: number;
     changeAmount?: number;
     cashierId?: string;

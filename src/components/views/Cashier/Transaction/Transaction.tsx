@@ -83,6 +83,9 @@ const Transaction = () => {
                 }}>
                   {data.status === "paid" ? "Cancel"  :  "Uncancel"}
                 </DropdownItem>
+                <DropdownItem key="struk" onClick={() => router.push(`/order/${data._id}/receipt`)}>
+                  Detail Struk
+                </DropdownItem>
               </DropdownMenu>
             </Dropdown>
           )

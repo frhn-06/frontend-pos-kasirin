@@ -3,6 +3,8 @@ import orderService from '@/services/order.service';
 import { IOrder } from '@/types/order';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useMutation } from '@tanstack/react-query';
+import { redirect } from 'next/navigation';
+import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -20,6 +22,8 @@ const schemaOrder = yup.object({
 
 const useCart = () => {
     const toaster = useContext(toasterContext);
+
+    const router = useRouter();
 
     const {handleSubmit: handleSubmitOrder, control, formState: {errors}, setValue, setError, getValues, reset} = useForm({
         resolver: yupResolver(schemaOrder)
@@ -42,11 +46,14 @@ const useCart = () => {
                 message: error.message
             });
         },
-        onSuccess: () => {
+        onSuccess: (data) => {
             toaster.setToaster({
                 type: "success",
                 message: "order berhasil"
             });
+
+            const id = data.data._id;
+            router.push(`/order/${id}/receipt`)
         }
 
     })

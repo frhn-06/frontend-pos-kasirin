@@ -9,7 +9,9 @@ const orderService = {
 
     cancel: (orderId: string) => instance.patch(`${endpoint.ORDER}/${orderId}/cancel`),
 
-    uncancel: (orderId: string) => instance.patch(`${endpoint.ORDER}/${orderId}/uncancel`)
+    uncancel: (orderId: string) => instance.patch(`${endpoint.ORDER}/${orderId}/uncancel`),
+
+    findById: (orderId: string) => instance.get(`${endpoint.ORDER}/${orderId}`)
 }
 
 export default orderService;
