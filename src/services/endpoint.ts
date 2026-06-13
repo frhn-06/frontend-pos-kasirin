@@ -4,7 +4,8 @@ const endpoint = {
     CATEGORY: "/category",
     MEDIA: "/media",
     PRODUCT: "/product",
-    ORDER: "/order"
+    ORDER: "/order",
+    DASHBOARD: "/dashboard"
 }
 
 export default endpoint;

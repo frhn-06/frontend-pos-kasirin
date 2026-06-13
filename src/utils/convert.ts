@@ -19,6 +19,14 @@ const convert = {
         });
 
         return result;
+    },
+
+    Day: (date: string) => {
+        const result = new Date(date).toLocaleDateString("id-ID", {
+            weekday: "short"
+        });
+        
+        return result
     }
 }
 

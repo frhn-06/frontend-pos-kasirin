@@ -1,16 +1,38 @@
-import { Button } from "@heroui/react";
-import { signOut } from "next-auth/react";
+import { ISummaryDashboardOwner, ITrendSalesDashboardOwner } from "@/types/dashboard";
+import Summary from "./Summary";
+import TrendSales from "./TrendSales";
+import { Card, CardBody } from "@heroui/react";
+import LastOrders from "./LastOrders";
+import TopProducts from "./TopProducts";
 
-const Dashboard = () => {
+interface TypeProps {
+  dataSummary: ISummaryDashboardOwner;
+  dataTrendSales: ITrendSalesDashboardOwner[];
+}
+
+const Dashboard = (props: TypeProps) => {
+    const {
+      dataSummary,
+      dataTrendSales
+    } = props;
+
     return (
-      <div className="w-full h-full bg-gray-100">
-        <Button onPress={() => signOut()} >
-          keluar
-        </Button>
-        <div className="bg-red-500 text-white p-10">
-  TEST
-</div>
-      </div>
+        <div className="py-12 px-4 lg:px-8 flex flex-col gap-8">
+          
+          <Summary data={dataSummary} />
+
+
+          <TrendSales data={dataTrendSales} />
+
+
+
+          <div className="flex flex-col xl:flex-row gap-6">
+            <LastOrders />
+          
+            <TopProducts />
+          </div>
+
+        </div>
     )
 }
 
