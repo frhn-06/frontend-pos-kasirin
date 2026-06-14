@@ -78,9 +78,11 @@ const Transaction = () => {
             return <Chip color="warning" variant="flat">Cancelled</Chip>
           }
         case "cashierId" :
-          return (data.cashierId as {_id?:string; fullName?:string}).fullName;
+          return (data.cashierSnapshot as {name?:string}).name;
         case "createdAt" :
           return convert.TimeInTable(`${data.createdAt}`);
+        case "totalAmount" :
+          return convert.IDR(Number(data.totalAmount))
         case "actions" :
           return (
             <Dropdown>

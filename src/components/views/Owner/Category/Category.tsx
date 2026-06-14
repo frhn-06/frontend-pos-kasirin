@@ -7,6 +7,7 @@ import column_list from "./category.constant";
 import AddCategory from "./AddCategory";
 import { useRouter } from "next/router";
 import DeleteCategory from "./DeleteCategory";
+import { signOut } from "next-auth/react";
 
 const Category = () => {
     const {

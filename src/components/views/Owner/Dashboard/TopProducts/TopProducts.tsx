@@ -1,4 +1,4 @@
-import { Card, CardBody, CardHeader, Skeleton } from "@heroui/react";
+import { Card, CardBody, CardHeader, Skeleton, Spinner } from "@heroui/react";
 import useTopProducts from "./useTopProducts";
 import { ITopProductsDashboardOwner } from "@/types/dashboard";
 import convert from "@/utils/convert";
@@ -10,8 +10,13 @@ const TopProducts = () => {
     } = useTopProducts();
 
     return (
-        <Skeleton isLoaded={isLoadingTopProducts} className="rounded-2xl">
-          <Card className="w-full max-w-160 flex-1 min-h-fit">
+      <div className="w-full max-w-160 flex-1  min-h-fit relative">
+        {isLoadingTopProducts ? (
+          <div className="bg-black/40 top-0 bottom-0 w-full absolute z-1 backdrop-blur-xs rounded-2xl flex justify-center items-center">
+            <Spinner />
+          </div>
+        ) : dataTopProducts && (
+          <Card className="h-full z-0">
             <CardHeader className="bg-blue-500 p-4">
               <h1 className="font-semibold text-white">
                 Top Products
@@ -37,7 +42,10 @@ const TopProducts = () => {
               ) )}
             </CardBody>
           </Card>
-        </Skeleton>
+        )}
+
+      </div>
+    
     )
 }
 
