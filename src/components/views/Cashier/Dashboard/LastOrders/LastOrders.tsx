@@ -2,7 +2,6 @@ import { useCallback } from "react";
 import useLastOrders from "./useLastOrders";
 import TableUi from "@/components/ui/TableUi";
 import COLUMN_LIST from "./column_list";
-import { ILastOrdersDashoardOwner } from "@/types/dashboard";
 import convert from "@/utils/convert";
 import { Chip } from "@heroui/react";
 
@@ -17,15 +16,13 @@ const LastOrders = () => {
 
         switch(column.id) {
           case "createdAt" :
-             return `${convert.TimeInTable(`${data.createdAt}`)} WIB`;
+            return `${convert.TimeInTable(`${data.createdAt}`)} WIB`;
           case "paymentMethod" :
             return (
               <Chip>
                 {data.paymentMethod === "cash" ? "Cash" : data.paymentMethod === "qris" ? "Qris" : "Trasnfer"}
               </Chip>
             )
-          case "cashierSnapshot" :
-            return (value as {name: string} ).name;
           case "totalAmount" :
             return convert.IDR(Number(data.totalAmount))
           default : 
@@ -34,7 +31,7 @@ const LastOrders = () => {
     },[])
 
     return (
-      <div className="w-full max-w-160 flex-2">
+      <div className="w-full max-w-160">
         <TableUi 
           data={dataLastOrders?.data || []} 
           column={COLUMN_LIST} 

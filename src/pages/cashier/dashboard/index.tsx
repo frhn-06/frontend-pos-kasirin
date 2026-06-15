@@ -1,12 +1,64 @@
 import DashboardLayout from "@/components/layouts/DashboardLayout";
+import Dashboard from "@/components/views/Cashier/Dashboard";
+import dashboardService from "@/services/dashboard.service";
+import { Spinner } from "@heroui/react";
+import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/router";
 
+
+const useCashierDashboard = () => {
+    const router = useRouter();
+
+    const getSummary = async () => {
+        const {data} = await dashboardService.summaryCashier();
+        return data;
+    }
+
+  const {data: dataSummary, isLoading: isLoadingSummary} = useQuery({
+        queryKey:["summaryOwner"],
+        queryFn: getSummary,
+        enabled: router.isReady
+    })
+
+    const getSummaryPayment = async () => {
+        const {data} = await dashboardService.paymentSummary();
+        return data;
+    }
+
+  const {data: dataPaymentSummary, isLoading: isLoadingPaymentSummary} = useQuery({
+        queryKey:["PaymentSummaryDashboard"],
+        queryFn: getSummaryPayment,
+    })
+
+  return {
+        dataSummary,
+        isLoadingSummary,
+
+        dataPaymentSummary,
+        isLoadingPaymentSummary
+  }
+}
 
 const PageCashierDashboard = () => {
+    const {
+      dataSummary,
+      isLoadingSummary,
+
+      dataPaymentSummary,
+      isLoadingPaymentSummary
+    } = useCashierDashboard();
+
+    const isLoading = isLoadingPaymentSummary || isLoadingSummary;
+
     return (       
         <DashboardLayout title="Dashboard | Cashier" description="welcome" role="cashier" pageTitle="Dashboard">
-          <div>
-            cashier dashoerd
-          </div>
+          {isLoading ? (
+            <div className="w-full min-h-screen flex justify-center items-center">
+                <Spinner color="primary" />
+            </div>
+          ) : (
+            <Dashboard dataSummary={dataSummary?.data} dataPaymentSummary={dataPaymentSummary?.data} />            
+          )}
         </DashboardLayout>
     )
 }

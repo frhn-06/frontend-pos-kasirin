@@ -27,4 +27,32 @@ interface ILastOrdersDashoardOwner {
     createdAt?: string;
 }
 
-export type {ISummaryDashboardOwner, ITrendSalesDashboardOwner, ITopProductsDashboardOwner, ILastOrdersDashoardOwner}
+
+
+
+interface ISummaryDashboardCashier {
+    totalPemasukanToday?: number;
+    totalOrderToday?: number;
+    totalProdukKeluarToday?: number;
+}
+
+interface ITopProductsDashboardCashier {
+    productName?: string;
+    totalSold?: number;
+    price?: number;
+}
+
+interface IPaymentSummary {
+    paymentMethod?: string;
+    total?: number;
+    percentage?: number;
+}
+
+interface ILastOrdersDashoardCashier {
+    orderNumber?: string;
+    totalAmount?: string;
+    paymentMethod?: string;
+    createdAt?: string;
+}
+
+export type {ISummaryDashboardOwner, ITrendSalesDashboardOwner, ITopProductsDashboardOwner, ILastOrdersDashoardOwner, ISummaryDashboardCashier, ITopProductsDashboardCashier, IPaymentSummary, ILastOrdersDashoardCashier}

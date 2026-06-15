@@ -9,7 +9,7 @@ const useOwnerDashboard = () => {
     const router = useRouter();
 
     const getSummary = async () => {
-        const {data} = await dashboardService.summary();
+        const {data} = await dashboardService.summaryOwner();
         return data;
     }
 

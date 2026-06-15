@@ -2,13 +2,24 @@ import instance from "@/libs/axios";
 import endpoint from "./endpoint";
 
 const dashboardService = {
-    summary: () => instance.get(`${endpoint.DASHBOARD}/owner-summary`),
+    summaryOwner: () => instance.get(`${endpoint.DASHBOARD}/owner-summary`),
 
     trendSales: () => instance.get(`${endpoint.DASHBOARD}/sales-trend`),
 
-    topProducts: () => instance.get(`${endpoint.DASHBOARD}/owner-top-products`),
+    topProductsOwner: () => instance.get(`${endpoint.DASHBOARD}/owner-top-products`),
 
-    lastOrders: () => instance.get(`${endpoint.DASHBOARD}/owner-last-orders`)
+    lastOrdersOwner: () => instance.get(`${endpoint.DASHBOARD}/owner-last-orders`),
+
+
+
+
+    summaryCashier: () => instance.get(`${endpoint.DASHBOARD}/cashier-summary`),
+
+    paymentSummary: () => instance.get(`${endpoint.DASHBOARD}/payment-summary`),
+
+    topProductsCashier: () => instance.get(`${endpoint.DASHBOARD}/cashier-top-products`),
+   
+    lastOrdersCashier: () => instance.get(`${endpoint.DASHBOARD}/cashier-last-orders`),
 }
 
 export default dashboardService;

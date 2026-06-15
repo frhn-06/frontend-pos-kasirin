@@ -1,6 +1,6 @@
 import { Card, CardBody, CardHeader, Spinner } from "@heroui/react";
 import useTopProducts from "./useTopProducts";
-import { ITopProductsDashboardOwner } from "@/types/dashboard";
+import { ITopProductsDashboardCashier } from "@/types/dashboard";
 import convert from "@/utils/convert";
 
 const TopProducts = () => {
@@ -15,7 +15,7 @@ const TopProducts = () => {
           <div className="bg-black/40 top-0 bottom-0 w-full absolute z-1 backdrop-blur-xs rounded-2xl flex justify-center items-center">
             <Spinner />
           </div>
-        ) : dataTopProducts && (
+        ) : dataTopProducts && ( 
           <Card className="h-full z-0">
             <CardHeader className="bg-blue-500 p-4">
               <h1 className="font-semibold text-white">
@@ -23,7 +23,7 @@ const TopProducts = () => {
               </h1>
             </CardHeader>
             <CardBody className="p-4 gap-2">
-              {dataTopProducts?.data?.map((data: ITopProductsDashboardOwner, id:number) => (
+              {dataTopProducts?.data?.map((data: ITopProductsDashboardCashier, id:number) => (
                 <div key={id} className="flex items-end border-b-2 border-gray-400/30">
                   <div className="flex-3">
                     <h3>

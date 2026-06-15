@@ -3,12 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 
 const useLastOrders = () => {
     const getLastOrders = async () => {
-        const {data} = await dashboardService.lastOrdersOwner();
+        const {data} = await dashboardService.lastOrdersCashier();
         return data;
     }
 
     const {data: dataLastOrders, isLoading: isLoadingLastOrders} = useQuery({
-        queryKey: ["LastOrdersOwner"],
+        queryKey: ["LastOrdersCashier"],
         queryFn: getLastOrders,
     })
 

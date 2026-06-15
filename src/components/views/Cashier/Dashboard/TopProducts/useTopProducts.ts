@@ -3,12 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 
 const useTopProducts = () => {
     const getTopProducts = async () => {
-        const {data} = await dashboardService.topProductsOwner();
+        const {data} = await dashboardService.topProductsCashier();
         return data;
     }
 
     const {data: dataTopProducts, isLoading: isLoadingTopProducts} = useQuery({
-        queryKey: ["TopProductsOwner"],
+        queryKey: ["TopProductsCashier"],
         queryFn: getTopProducts,
     })
 
