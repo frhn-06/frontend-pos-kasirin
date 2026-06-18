@@ -2,6 +2,7 @@ import { FaCartShopping, FaWallet } from "react-icons/fa6";
 import { IoMdSettings } from "react-icons/io";
 import { IoStorefront } from "react-icons/io5";
 import { MdCategory, MdOutlineRestaurantMenu, MdSpaceDashboard } from "react-icons/md";
+import { TbReport } from "react-icons/tb";
 
 const listConstant = {
     owner: [
@@ -28,6 +29,12 @@ const listConstant = {
             label: "Transaction",
             href: "/owner/transaction",
             icon: <FaWallet className="w-full h-full" />
+        },
+        {
+            id: "report",
+            label: "Report",
+            href: "/owner/report",
+            icon: <TbReport className="w-full h-full" />
         },
         {
             id: "store",

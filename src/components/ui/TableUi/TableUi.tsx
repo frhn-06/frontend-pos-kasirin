@@ -276,8 +276,8 @@ const TableUi = (props: TypeProps) => {
             ))}
           </TableHeader>
           <TableBody emptyContent={emptyContent}> 
-            {data?.map((d) => (
-              <TableRow key={`${d._id}`}>
+            {data?.map((d, i) => (
+              <TableRow key={`${i}`}>
                 {column.map((c: {label: string; id: string}) => (
                   <TableCell key={c.id}>{renderCell(d, c)}</TableCell>
                 ))}

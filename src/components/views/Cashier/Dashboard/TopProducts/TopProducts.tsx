@@ -23,7 +23,14 @@ const TopProducts = () => {
               </h1>
             </CardHeader>
             <CardBody className="p-4 gap-2">
-              {dataTopProducts?.data?.map((data: ITopProductsDashboardCashier, id:number) => (
+              { dataTopProducts?.data?.length === 0 ? (
+                <div className="min-h-24 flex justify-center items-center">
+                  <p className="text-gray-400 italic">
+                    Data Produk teratas hari ini kosong
+                  </p>
+                </div>
+              ) :
+              dataTopProducts?.data?.map((data: ITopProductsDashboardCashier, id:number) => (
                 <div key={id} className="flex items-end border-b-2 border-gray-400/30">
                   <div className="flex-3">
                     <h3>

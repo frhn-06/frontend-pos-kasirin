@@ -19,7 +19,14 @@ const PaymentSummary = (props: TypeProps) => {
               </h1>
             </CardHeader>
             <CardBody className="p-4 gap-6">
-              {data.map((d: IPaymentSummary, i:number) => (
+              {data.length === 0 ? (
+                <div className="min-h-24 flex justify-center items-center">
+                  <p className="text-gray-400 italic">
+                    Data Payment Summary hari ini kosong
+                  </p>
+                </div>
+              ) : 
+              data.map((d: IPaymentSummary, i:number) => (
                 <div key={i} className="flex-col flex gap-2">
                   <div className="flex">
                     <p className="flex-2 font-semibold">
