@@ -20,7 +20,7 @@ const SalesByDay = (props: TypeProps) => {
 
       switch(column.id) {
         case "date" :
-          return convert.TimeInTable(`${data.date}`) + " WIB";
+          return convert.TimeInTableWithoutHours(`${data.date}`);
         case "totalSales" :
           return convert.IDR(Number(data.totalSales));
         default :

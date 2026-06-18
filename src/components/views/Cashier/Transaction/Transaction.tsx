@@ -47,7 +47,6 @@ const Transaction = () => {
 
     const [statusOrder, setStatusOrder] = useState<string | null>(null)
 
-
     useEffect(() => {
       if(router.isReady) {
         setUrl();
@@ -67,6 +66,8 @@ const Transaction = () => {
           } else if(data.status === "cancelled") {
             return <Chip color="warning" variant="flat">Cancelled</Chip>
           }
+        case "totalAmount" :
+          return convert.IDR(Number(data.totalAmount));
         case "createdAt" :
           return convert.TimeInTable(`${data.createdAt}`);
         case "actions" :
@@ -115,12 +116,13 @@ const Transaction = () => {
               currentStart={`${currentStart}`}
               currentEnd={`${currentEnd}`}
   
-              totalPage={Number(dataTransactions?.Pagination?.totalPage)}
+              totalPage={Number(dataTransactions?.pagination?.totalPage)}
   
               showLimit
               onChangeLimit={handleLimit}
   
               showPagination
+              onPagination={handlePage}
               
               showSearch
               onChangeSearch={handleSearch}

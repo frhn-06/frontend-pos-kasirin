@@ -105,13 +105,15 @@ const Product = () => {
 
             onChangeLimit={handleLimit}
 
-            totalPage={Number(dataProducts?.Pagination?.totalPage)}
+            totalPage={Number(dataProducts?.pagination?.totalPage)}
 
             showLimit
             showPagination
             showSearch
 
             onChangeSearch={handleSearch}
+
+            onPagination={handlePage}
           />
 
           <AddProduct isOpen={modalAddProduct.isOpen} onClose={modalAddProduct.onClose} refetch={refetchProducts} />

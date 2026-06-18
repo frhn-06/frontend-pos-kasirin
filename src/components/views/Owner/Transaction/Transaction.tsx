@@ -47,9 +47,6 @@ const Transaction = () => {
 
     const router = useRouter();
 
-    const modalAddTransaction = useDisclosure();
-
-    const modalDeleteTransaction = useDisclosure();
 
     const modalCancelTransaction = useDisclosure();
 
@@ -63,7 +60,6 @@ const Transaction = () => {
         setUrl();
       }
     },[router.isReady])
-
 
     const renderCell = useCallback((data: Record<string, unknown>, column: {label: string; id: string}) => {
       const value = data[column.id as keyof typeof data]
@@ -130,12 +126,13 @@ const Transaction = () => {
               currentStart={`${currentStart}`}
               currentEnd={`${currentEnd}`}
   
-              totalPage={Number(dataTransactions?.Pagination?.totalPage)}
+              totalPage={Number(dataTransactions?.pagination?.totalPage)}
   
               showLimit
               onChangeLimit={handleLimit}
   
               showPagination
+              onPagination={handlePage}
               
               showSearch
               onChangeSearch={handleSearch}
@@ -161,11 +158,6 @@ const Transaction = () => {
             />
           )}
 
-          {/* <AddProduct isOpen={modalAddTransaction.isOpen} onClose={modalAddTransaction.onClose} refetch={refetchTransactions} /> */}
-
-         
-
-          {/* <DeleteProduct productId={`${idTransaction}`} onClose={modalDeleteTransaction.onClose} isOpen={modalDeleteTransaction.isOpen} refetch={refetchTransactions} /> */}
 
           <CancelTransaction isOpen={modalCancelTransaction.isOpen} onClose={modalCancelTransaction.onClose} transactionId={`${idTransaction}`} refetch={refetchTransactions} status={`${statusOrder as "cancelled" | "paid"}`} />
 

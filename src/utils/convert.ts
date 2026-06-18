@@ -21,6 +21,16 @@ const convert = {
         return result;
     },
 
+    TimeInTableWithoutHours: (date: string) => {
+        const result = new Date(date).toLocaleString("id-ID", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+        });
+
+        return result;
+    },
+
     Day: (date: string) => {
         const result = new Date(date).toLocaleDateString("id-ID", {
             weekday: "short"

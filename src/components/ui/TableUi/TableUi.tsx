@@ -34,6 +34,7 @@ interface TypeProps {
   onChangeLimit?: (e:ChangeEvent<HTMLSelectElement>) => void;
 
   showPagination?: boolean;
+  onPagination?: (e: number) => void;
 
   showSearch?: boolean;
   onChangeSearch?: (e: ChangeEvent<HTMLInputElement>) => void; 
@@ -87,6 +88,7 @@ const TableUi = (props: TypeProps) => {
       onChangeLimit,
 
       showPagination,
+      onPagination,
       
       showSearch,
       onChangeSearch,
@@ -232,6 +234,7 @@ const TableUi = (props: TypeProps) => {
 
 
     const bottomContent = useMemo(() => {
+      console.log("total page ", totalPage)
       return (
         <div className="flex flex-col gap-4 lg:flex-row justify-between">
           {showLimit && (
@@ -254,7 +257,15 @@ const TableUi = (props: TypeProps) => {
           )}
 
           {showPagination && (
-            <Pagination variant="bordered"  initialPage={1} total={totalPage || 1} />
+            <Pagination 
+              variant="bordered" 
+              showControls 
+              showShadow 
+              color="primary"  
+              initialPage={1} 
+              total={totalPage || 1}
+              onChange={onPagination}
+            />
           )}
         </div>
       )
