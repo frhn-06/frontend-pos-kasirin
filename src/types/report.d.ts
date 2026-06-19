@@ -15,4 +15,16 @@ interface IReportSales {
     salesByDay: Isalesbyday[]
 } 
 
-export type {IReportSales, Isummarysales, Isalesbyday}
+
+
+
+
+interface IReportProduct {
+    productId: string;
+    productName: string;
+    qtySold: number;
+    totalPemasukan: number;
+    totalOrders: number;
+}
+
+export type {IReportSales, Isummarysales, Isalesbyday, IReportProduct}
