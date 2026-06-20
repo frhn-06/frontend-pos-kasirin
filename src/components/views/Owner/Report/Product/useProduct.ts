@@ -55,6 +55,8 @@ const useProduct = () => {
         link.download = "product-report-kasirin.xlsx";
 
         link.click();
+        
+        window.URL.revokeObjectURL(url);
     }
 
     const handleCetakExcel = () => {
