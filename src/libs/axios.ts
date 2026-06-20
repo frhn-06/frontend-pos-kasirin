@@ -17,7 +17,6 @@ interface CustomSession extends Session {
 
 instance.interceptors.request.use(
     async (request) => {
-      console.log(process.env.NEXT_PUBLIC_API_URL)
         const session : CustomSession | null = await getSession();
         if(session && session.accessToken) {
             request.headers.Authorization = `Bearer ${session.accessToken}`

@@ -1,3 +1,4 @@
+import exportService from "@/services/export.service"
 import { DateValue } from "@internationalized/date"
 import { useRouter } from "next/router"
 
@@ -41,12 +42,33 @@ const useProduct = () => {
         })
     }
 
+
+    const cetakProductExcel = async () => {
+        const result = await exportService.productExcel();
+
+        const url = window.URL.createObjectURL(result.data);
+
+        const link = document.createElement("a");
+
+        link.href = url;
+
+        link.download = "product-report-kasirin.xlsx";
+
+        link.click();
+    }
+
+    const handleCetakExcel = () => {
+        cetakProductExcel();
+    }
+
     return {
         handleChangeStartDate,
         handleChangeEndDate,
 
         handleClearStartDate,
-        handleClearEndDate
+        handleClearEndDate,
+
+        handleCetakExcel
     }
 }
 

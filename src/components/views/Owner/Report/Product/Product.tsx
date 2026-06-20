@@ -5,6 +5,7 @@ import TableUi from "@/components/ui/TableUi";
 import column_list from "./column_list";
 import Link from "next/link";
 import { FaChevronRight } from "react-icons/fa6";
+import { Button } from "@heroui/react";
 
 interface TypeProps {
   data:[],
@@ -30,7 +31,9 @@ const Product = (props: TypeProps) => {
       handleChangeEndDate,
 
       handleClearStartDate,
-      handleClearEndDate
+      handleClearEndDate,
+
+      handleCetakExcel
     } = useProduct();
 
 
@@ -75,6 +78,10 @@ const Product = (props: TypeProps) => {
               onClearDateEnd={handleClearEndDate}
               currentEnd={currentEnd}
             />
+
+            <Button className="w-full sm:max-w-48 text-white" color="success" onPress={handleCetakExcel}>
+              Cetak Excel
+            </Button>
           </div>
         </div>
     )

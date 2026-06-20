@@ -6,7 +6,8 @@ const endpoint = {
     PRODUCT: "/product",
     ORDER: "/order",
     DASHBOARD: "/dashboard",
-    REPORT: "/report"
+    REPORT: "/report",
+    EXPORT: "/export"
 }
 
 export default endpoint;

@@ -1,3 +1,5 @@
+import endpoint from "@/services/endpoint"
+import exportService from "@/services/export.service"
 import { DateValue } from "@internationalized/date"
 import { useRouter } from "next/router"
 import { ChangeEvent } from "react"
@@ -41,12 +43,33 @@ const useSales = () => {
         })
     }
 
+
+
+    const exportExcelSales = async () => {
+        const result = await exportService.salesExcel()
+
+        const url = window.URL.createObjectURL(result.data);
+
+        const link = document.createElement("a");
+
+        link.href = url;
+
+        link.download = "sales-report-kasirin.xlsx";
+
+        link.click();
+    }
+
+    const handleCetakExcel = () => {
+        exportExcelSales();
+    }
     return {
         handleChangeStartDate,
         handleChangeEndDate,
 
         handleClearStartDate,
-        handleClearEndDate
+        handleClearEndDate,
+
+        handleCetakExcel
     }
 }
 

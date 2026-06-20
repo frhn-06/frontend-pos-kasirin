@@ -5,6 +5,7 @@ import Summary from "./Summary"
 import useSales from "./useSales";
 import DateFilter from "./DateFilter";
 import SalesByDay from "./SalesByDay";
+import { Button } from "@heroui/react";
 
 interface TypeProps {
   data: IReportSales; 
@@ -26,7 +27,9 @@ const Sales = (props: TypeProps) => {
       handleChangeStartDate,
       handleChangeEndDate,
       handleClearStartDate,
-      handleClearEndDate
+      handleClearEndDate,
+
+      handleCetakExcel
     } = useSales()
 
 
@@ -61,6 +64,10 @@ const Sales = (props: TypeProps) => {
 
             
             <SalesByDay data={data?.salesByDay || []} isLoading={isLoading} />
+
+            <Button className="w-full sm:max-w-48 text-white" color="success" onPress={handleCetakExcel}>
+              Cetak Excel
+            </Button>
           </div>
 
         </div>
