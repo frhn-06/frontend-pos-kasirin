@@ -37,6 +37,14 @@ const convert = {
         });
         
         return result
+    },
+
+    Acronym: (name: string) => {
+        const arrayName = name.split(" ");
+        const arrayHuruf = arrayName.map(a => a[0]);
+        const kapital = arrayHuruf.map(a => a.toUpperCase())
+        const max3 = kapital.slice(0, 3);
+        return max3.join("");
     }
 }
 

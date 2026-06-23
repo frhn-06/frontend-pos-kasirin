@@ -14,17 +14,24 @@ interface ILogin {
 
 
 interface ISesson extends Session {
-    id: string;
-    role: string;
-    storeId: string | null;
-    userName: string;
-    fullName: string;
-    email: string;
-    avatar;
+    id?: string;
+    role?: string;
+    storeId?: string | null;
+    userName?: string;
+    fullName?: string;
+    email?: string;
+    avatar?: string;
+    password?: string;
 }
 
 interface IUser extends ISesson {
     _id?: string;
 }
 
-export type {IRegister, ILogin, ISesson, IUser}
+interface IPassword {
+    oldPassword?: string;
+    newPassword?: string;
+    confirmNewPassword?: string;
+}
+
+export type {IRegister, ILogin, ISesson, IUser, IPassword}
