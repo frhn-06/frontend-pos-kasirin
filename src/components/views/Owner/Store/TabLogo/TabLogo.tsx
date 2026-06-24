@@ -48,7 +48,7 @@ const TabLogo = (props: TypeProps) => {
     },[isSuccessUpdateLogo]);
 
     return (
-        <Card>
+        <Card className="z-0">
           <form encType="multipart/form-data" onSubmit={handleSubmitTabLogo(onUpdateLogo)}>
             <CardBody className="gap-6">
               <div className="flex justify-center items-center py-8">

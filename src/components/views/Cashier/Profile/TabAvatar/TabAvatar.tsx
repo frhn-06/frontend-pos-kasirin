@@ -49,7 +49,7 @@ const TabAvatar = (props: TypeProps) => {
 
 
     return (
-        <Card>
+        <Card className="z-0">
           <form encType="multipart/form-data" onSubmit={handleSubmitTabAvatar(onUpdateAvatar)}>
             <CardBody className="gap-6">
               <div className="flex justify-center items-center py-8">

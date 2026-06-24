@@ -46,7 +46,7 @@ const TabInfo = (props: TypeProps) => {
     },[isSuccessUpdateInfo])
 
     return (
-        <Card>
+        <Card className="z-0">
           <form onSubmit={handleSubmitTabInfo(onUpdateInfo)}>
             <CardBody className="gap-4">
               {!getValuesTabInfo("description") && (

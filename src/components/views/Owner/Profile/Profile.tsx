@@ -2,6 +2,7 @@ import { Tab, Tabs } from "@heroui/react"
 import useProfile from "./useProfile"
 import TabAvatar from "./TabAvatar";
 import TabInfo from "./TabInfo";
+import TabPasssword from "./TabPassword";
 
 const Profile = () => {
     const {
@@ -29,6 +30,11 @@ const Profile = () => {
                 <TabInfo 
                   data={dataProfile?.data}
                   isLoading={totalLoad}
+                  refetch={refetchDataProfile}
+                />
+              </Tab>
+              <Tab key="password" title="Password" className="max-w-3xl">
+                <TabPasssword 
                   refetch={refetchDataProfile}
                 />
               </Tab>
