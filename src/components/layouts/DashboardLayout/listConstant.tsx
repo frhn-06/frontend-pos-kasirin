@@ -1,4 +1,4 @@
-import { FaCartShopping, FaWallet } from "react-icons/fa6";
+import { FaCartShopping, FaUsers, FaWallet } from "react-icons/fa6";
 import { IoMdSettings } from "react-icons/io";
 import { IoStorefront } from "react-icons/io5";
 import { MdCategory, MdOutlineRestaurantMenu, MdSpaceDashboard } from "react-icons/md";
@@ -41,6 +41,12 @@ const listConstant = {
             label: "Store",
             href: "/owner/store",
             icon: <IoStorefront className="w-full h-full" />
+        },
+        {
+            id: "cashier",
+            label: "Cashier",
+            href: "/owner/cashier",
+            icon: <FaUsers className="w-full h-full" />
         },
         {
             id: "setting",
