@@ -1,10 +1,12 @@
+import LandingPageLayout from "@/components/layouts/LandingPageLayout";
+import LandingPage from "@/components/views/LandingPage";
 
 
 
 export default function Home() {
   return (
-    <main>
-      home
-    </main>
+      <LandingPageLayout title="Sass Pos Kasirin">
+        <LandingPage />
+      </LandingPageLayout>
   );
 }
