@@ -2,7 +2,16 @@ import { Card, CardBody, CardHeader, Chip } from "@heroui/react";
 import listHowItWork from "./listHowItWorks";
 import { motion } from "motion/react";
 
-const HowItWorksSection = () => {
+
+interface TypeProps {
+  id: string;
+}
+const HowItWorksSection = (props: TypeProps) => {
+    const {
+      id
+    } = props;
+
+
     return (
         <section id="how" className="min-h-fit relative">
           <div className="max-w-7xl mx-auto px-4 py-24">

@@ -1,8 +1,18 @@
 import Image from "next/image";
 import { FaCheckSquare } from "react-icons/fa";
 import { motion } from "motion/react";
+import { SetStateAction } from "react";
 
-const PreviewsSection = () => {
+interface TypeProps {
+  setActiveSection: React.Dispatch<SetStateAction<string>>
+  id: string;
+}
+const PreviewsSection = (props: TypeProps) => {
+    const {
+      setActiveSection,
+      id
+    } = props;
+
     return (
         <section id="preview" className="bg-blue-800 min-h-fit relative">
           <div className="max-w-7xl mx-auto px-4 py-24">

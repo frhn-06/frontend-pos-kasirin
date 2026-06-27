@@ -2,10 +2,19 @@ import { Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
+import { SetStateAction } from "react";
 
+interface TypeProps {
+  setActiveSection: React.Dispatch<SetStateAction<string>>
+  id: string;
+}
 
+const HeroSection = (props: TypeProps) => {
+    const {
+      setActiveSection,
+      id
+    } = props;
 
-const HeroSection = () => {
     return (
         <motion.section id="home" className="bg-blue-500 min-h-fit relative"
           initial={{

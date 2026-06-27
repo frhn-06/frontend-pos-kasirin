@@ -1,10 +1,16 @@
 import { Button, cn, Link, Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle } from "@heroui/react";
-import { useState } from "react";
 import navList from "./navList";
-import { useRouter } from "next/router";
+import { useState } from "react";
 
-const NavbarLayout = () => {
-    const router = useRouter();
+
+interface TypeProps {
+  activeSection: string;
+}
+const NavbarLayout = (props: TypeProps) => {
+
+    const {
+      activeSection
+    } = props;
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -17,6 +23,12 @@ const NavbarLayout = () => {
         setScroll(false);
       }
     }
+
+
+    
+    
+
+    
 
     const NavbarMenuContent = () => {
         return (
@@ -50,15 +62,9 @@ const NavbarLayout = () => {
           <NavbarContent className="hidden sm:flex gap-4" justify="center">
             {navList.map((nav) => (
               <NavbarItem key={nav.id}>
-                <Link href={`${nav.href}`} className={cn("text-white" , {"text-blue-500" : isScroll})}>
+                <Link href={`${nav.href}`} className={cn("text-white" , {"text-blue-500" : isScroll, "underline" : activeSection === nav.id})}>
                   {nav.label}
                 </Link>
-                <div className={cn("w-full h-[2px] bg-white rounded-2xl" , {
-                  "hidden" : router.pathname !== nav.href,
-                  "bg-blue-500" : isScroll
-                })}>
-
-                </div>
               </NavbarItem>
             ))}
           </NavbarContent>

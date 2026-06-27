@@ -1,7 +1,5 @@
 import PageHead from "@/components/commons/PageHead"
 import React from "react";
-import NavbarLayout from "../NavbarLayout";
-import FooterLayout from "../FooterLayout";
 
 
 interface TypeProps {
@@ -17,12 +15,10 @@ const LandingPageLayout = (props: TypeProps) => {
     return (
         <main>
             <PageHead title={title} />
+            
+            {children}            
 
-            <>
-                <NavbarLayout />
-                {children}            
-                <FooterLayout />
-            </>
+            
         </main>
     )
 }

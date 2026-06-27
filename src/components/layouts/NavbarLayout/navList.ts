@@ -11,7 +11,7 @@ const navList = [
     },
     {
         label: "Previews",
-        id: "previews",
+        id: "preview",
         href: "#preview"
     },
 ]

@@ -1,9 +1,20 @@
 import { Card, CardBody, CardHeader } from "@heroui/react";
 import listFieatures from "./lisFeatures";
 import { motion } from "motion/react";
+import { SetStateAction } from "react";
 
 
-const FeaturesSection = () => {
+interface TypeProps {
+  setActiveSection: React.Dispatch<SetStateAction<string>>
+  id: string;
+}
+
+const FeaturesSection = (props: TypeProps) => {
+    const {
+      setActiveSection,
+      id
+    } = props;
+
     return (
         <section id="features" className="bg-white min-h-fit relative">
           <div className="max-w-7xl mx-auto px-4 lg:px-0 py-24">
