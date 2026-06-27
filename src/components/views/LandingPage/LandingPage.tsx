@@ -26,7 +26,7 @@ const LandingPage = () => {
       });
 
 
-      
+
       const sections = document.querySelectorAll("section");
       
       sections.forEach((section) => {
@@ -40,15 +40,15 @@ const LandingPage = () => {
         <>
           <NavbarLayout activeSection={activeSection} />
             <main className="min-h-[3000] overflow-x-hidden">
-              <HeroSection setActiveSection={setActiveSection} id="hero" />
+              <HeroSection />
 
-              <FeaturesSection setActiveSection={setActiveSection} id="features" />
+              <FeaturesSection />
 
-              <PreviewsSection setActiveSection={setActiveSection} id="preview" />
+              <PreviewsSection />
 
-              <HowItWorksSection id="how" />
+              <HowItWorksSection />
 
-              <CtaSection id="cta" />
+              <CtaSection />
             </main> 
           <FooterLayout />
         </>

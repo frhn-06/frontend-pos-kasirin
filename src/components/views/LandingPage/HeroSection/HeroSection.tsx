@@ -2,18 +2,10 @@ import { Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { SetStateAction } from "react";
 
-interface TypeProps {
-  setActiveSection: React.Dispatch<SetStateAction<string>>
-  id: string;
-}
 
-const HeroSection = (props: TypeProps) => {
-    const {
-      setActiveSection,
-      id
-    } = props;
+const HeroSection = () => {
+   
 
     return (
         <motion.section id="home" className="bg-blue-500 min-h-fit relative"
@@ -51,14 +43,14 @@ const HeroSection = (props: TypeProps) => {
             </div>
 
             <div className="min-w-full px-6 sm:px-0 sm:min-w-120 w-1/2 min-h-100">
-              <div className="relative bg-amber-600 w-full">
+              <div className="relative bg-amber-600 w-full animate-bounce">
                 <div className="w-full absolute">
                   <Image src={`/landing-page/hero-cashier.png`} alt="hero-cashier" width={1080} height={1080} className="w-full" />
                 </div>
                 <div className="w-full absolute bg-black/30 translate-x-3 translate-y-7">
                   <Image src={`/landing-page/hero-owner.png`} alt="hero-owner" width={1080} height={1080} className="w-full opacity-0" />                  
                 </div>
-                <div className="w-full absolute translate-x-15 translate-y-20">
+                <div className="w-full absolute translate-x-15 translate-y-20 ">
                   <Image src={`/landing-page/hero-owner.png`} alt="hero-owner" width={1080} height={1080} className="w-full" />
                 </div>
               </div>

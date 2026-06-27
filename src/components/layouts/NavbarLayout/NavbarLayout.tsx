@@ -62,9 +62,10 @@ const NavbarLayout = (props: TypeProps) => {
           <NavbarContent className="hidden sm:flex gap-4" justify="center">
             {navList.map((nav) => (
               <NavbarItem key={nav.id}>
-                <Link href={`${nav.href}`} className={cn("text-white" , {"text-blue-500" : isScroll, "underline" : activeSection === nav.id})}>
+                <Link href={`${nav.href}`} className={cn("text-white" , {"text-blue-500" : isScroll, "font-bold" : activeSection === nav.id})}>
                   {nav.label}
                 </Link>
+                <div className={cn("w-full h-1 rounded-2xl bg-white scale-0 transition-all duration-250", {"bg-blue-500" : isScroll, "scale-100" : activeSection === nav.id})}></div>
               </NavbarItem>
             ))}
           </NavbarContent>

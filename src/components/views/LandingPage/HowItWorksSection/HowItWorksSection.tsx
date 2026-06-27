@@ -2,14 +2,7 @@ import { Card, CardBody, CardHeader, Chip } from "@heroui/react";
 import listHowItWork from "./listHowItWorks";
 import { motion } from "motion/react";
 
-
-interface TypeProps {
-  id: string;
-}
-const HowItWorksSection = (props: TypeProps) => {
-    const {
-      id
-    } = props;
+const HowItWorksSection = () => {
 
 
     return (

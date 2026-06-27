@@ -2,14 +2,9 @@ import { Button, Card, CardBody, CardHeader } from "@heroui/react";
 import Link from "next/link";
 import { motion } from "motion/react";
 
-interface TypeProps {
-  id: string;
-}
-const CtaSection = (props: TypeProps) => {
-    const {
-      id
-    } = props;
+const CtaSection = () => {
 
+  
     return (
         <section className="bg-white min-h-fit relative">
           <div className="max-w-6xl mx-auto px-4 lg:px-0 py-24">
