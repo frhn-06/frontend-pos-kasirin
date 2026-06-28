@@ -93,7 +93,7 @@ const Register = () => {
 
           <div className="px-4 pb-4">
             <p className="text-sm">
-              sudah punya akun ? silahkan <Link href="/auth/login" className="text-blue-600 font-bold">Login disini</Link>
+              sudah punya akun owner ? silahkan <Link href="/auth/login" className="text-blue-600 font-bold">Login disini</Link>
             </p>
           </div>
         </form>

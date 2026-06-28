@@ -4,10 +4,6 @@ import useLogin from "./useLogin"
 import { IoEyeSharp } from "react-icons/io5";
 import { Controller } from "react-hook-form";
 import Link from "next/link";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
-import { ISesson } from "@/types/auth";
 
 const Login = () => {
     const {
@@ -24,12 +20,10 @@ const Login = () => {
       onLogin
     } = useLogin();
 
-    const router = useRouter();
-
-
 
 
     return (
+        
         <Card fullWidth>
           <form onSubmit={handleSubmitLogin(onLogin)}>
             <CardHeader>
@@ -70,11 +64,13 @@ const Login = () => {
             
             <div className="px-4 pb-4">
               <p className="text-sm">
-                belum punya akun ? silahkan <Link href="/auth/register" className="text-blue-600 font-bold">Daftar disini</Link>
+                belum punya akun owner ? silahkan <Link href="/auth/register" className="text-blue-600 font-bold">Daftar disini</Link>
               </p>
             </div>
           </form>
         </Card>
+
+
     )
 }
 

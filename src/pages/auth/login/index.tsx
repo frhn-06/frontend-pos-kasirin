@@ -3,7 +3,7 @@ import Login from "@/components/views/Auth/Login";
 
 const PageLogin = () => {
     return (
-        <AuthLayout title="Login">
+        <AuthLayout title="Login" authTitle="Login">
           <Login />
         </AuthLayout>
     )

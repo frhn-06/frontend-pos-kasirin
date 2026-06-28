@@ -4,6 +4,12 @@
 @source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
 @custom-variant dark (&:is(.dark *));
 
+
+
+html {
+  scroll-behavior: smooth;
+}
+
 .text-base {
   @apply text-gray-700
 }
@@ -56,9 +62,19 @@
 
 
 
-
-
-
+.Animee-buttonDownAuth {
+  animation: buttonDownAuth 1s ease-in-out infinite;
+} 
+  
+  @keyframes buttonDownAuth {
+      0%,
+      100% {
+        color: oklch(42.4% 0.199 265.638);
+      }
+      50% {
+        color: oklch(54.6% 0.245 262.881);
+      }
+    }
 
 
 

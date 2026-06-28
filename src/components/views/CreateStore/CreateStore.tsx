@@ -1,4 +1,4 @@
-import { Button, Card, CardBody, CardFooter, CardHeader, Input, Spinner, Textarea } from "@heroui/react"
+import { Alert, Button, Card, CardBody, CardFooter, CardHeader, Input, Spinner, Textarea } from "@heroui/react"
 import useCreateStore from "./useCreateStore"
 import { Controller } from "react-hook-form"
 import { useEffect } from "react"
@@ -37,6 +37,13 @@ const CreateStore = () => {
           </CardHeader>
        
           <CardBody className="gap-4 text-base">
+            <Alert
+              hideIcon
+              color="warning"
+              title="Anda harus membuat akun toko / kedai terlebih dahulu"
+              variant="faded"
+            />
+
               {errors?.root && (
                 <p className="text-danger text-sm">
                   {errors?.root?.message}

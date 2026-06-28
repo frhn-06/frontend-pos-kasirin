@@ -3,7 +3,7 @@ import Register from "@/components/views/Auth/Register";
 
 const PageRegister = () => {
     return (
-        <AuthLayout title="register">
+        <AuthLayout title="Register" authTitle="Register">
            <Register />
         </AuthLayout>
     )
