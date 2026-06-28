@@ -7,6 +7,8 @@ import { MdDelete } from "react-icons/md"
 
 interface TypeProps {
   fotoOnLoad: string;
+  label?: string;
+
   onChangeImg: (e:ChangeEvent<HTMLInputElement>, onChange: (files: FileList) => void) => void;
   isPendingAdd: boolean;
   isSuccessAdd: boolean;
@@ -23,6 +25,8 @@ interface TypeProps {
 const InputFile = (props: TypeProps) => {
     const {
       fotoOnLoad,
+      label,
+
       onChangeImg,
       isPendingAdd,
 
@@ -46,7 +50,7 @@ const InputFile = (props: TypeProps) => {
     return (
       <div >
         <p className="text-gray-700 mb-2">
-          Foto
+          {label}
         </p>
         <label htmlFor="input-poto">
           <div className={cn("min-h-40 p-4 border-2 bg-gray-100 active:bg-gray-200 border-gray-400/30 border-dashed rounded-2xl flex justify-center items-center relative", {"border-red-400" : isInvalid})}>

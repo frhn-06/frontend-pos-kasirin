@@ -1,4 +1,4 @@
-import { Button, Card, CardBody, Skeleton, Spinner } from "@heroui/react";
+import { Alert, Button, Card, CardBody, Skeleton, Spinner } from "@heroui/react";
 import Image from "next/image";
 import useTabLogo from "./useTabLogo";
 import InputFile from "@/components/ui/InputFile";
@@ -47,18 +47,27 @@ const TabLogo = (props: TypeProps) => {
       }
     },[isSuccessUpdateLogo]);
 
+
     return (
         <Card className="z-0">
           <form encType="multipart/form-data" onSubmit={handleSubmitTabLogo(onUpdateLogo)}>
             <CardBody className="gap-6">
               <div className="flex justify-center items-center py-8">
-                <div className="w-1/3">
-                  {isLoading ? (
+                {isLoading ? (
+                  <div className="w-1/3">
                     <Skeleton isLoaded={!isLoading} className="w-full h-1/2 rounded-xl" />
-                  ) : (                  
+                  </div>
+                ) : data ? (
+                  <div className="w-1/3">
                     <Image src={`${data}`} alt="avtStore" className="w-full rounded-xl" width={1080} height={1080} />
-                  )}
-                </div>
+                  </div>
+                ) : !data && (
+                  <div>
+                    <Alert color="warning" variant="faded">
+                      Anda belum membuat logo untuk store
+                    </Alert>
+                  </div>
+                )}
               </div>
 
 
@@ -75,6 +84,7 @@ const TabLogo = (props: TypeProps) => {
                   <InputFile
                     {...field}
                     fotoOnLoad={typeof fotoOnLoad === "string" ? fotoOnLoad : ""}
+                    label="Logo"
       
                     onChangeImg={handleChangeImg}
                     onRemoveImg={handleRemoveImg}

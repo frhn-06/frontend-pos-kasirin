@@ -234,7 +234,6 @@ const TableUi = (props: TypeProps) => {
 
 
     const bottomContent = useMemo(() => {
-      console.log("total page ", totalPage)
       return (
         <div className="flex flex-col gap-4 lg:flex-row justify-between">
           {showLimit && (

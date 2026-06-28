@@ -3,21 +3,27 @@ import Summary from "./Summary";
 import TopProducts from "./TopProducts";
 import PaymentSummary from "./PaymentSummary";
 import LastOrders from "./LastOrders";
+import Ucapan from "./Ucapan";
+import { IUser } from "@/types/auth";
 
 interface TypeProps {
   dataSummary: ISummaryDashboardCashier;
   dataPaymentSummary: IPaymentSummary[];
+  user: IUser;
 }
 
 const Dashboard = (props: TypeProps) => {
     const {
       dataSummary,
-      dataPaymentSummary
+      dataPaymentSummary,
+      user
     } = props;
 
     return (
         <div className="py-12 px-4 lg:px-8 flex flex-col gap-8">
-                  
+          
+          <Ucapan user={user} />
+
           <Summary data={dataSummary} />
         
         

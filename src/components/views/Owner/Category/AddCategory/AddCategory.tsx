@@ -75,6 +75,8 @@ const AddCategory = (props: TypeProps) => {
                   <InputFile 
                     {...field}
                     fotoOnLoad={typeof fotoOnLoad === "string" ? fotoOnLoad : ""}
+                    label="Foto"
+
                     onChangeImg={handleChangeImg}
                     isPendingAdd={isPendingAddOneImage}
                     isSuccessAdd={isSuccessAddOneImage}

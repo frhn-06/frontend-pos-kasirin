@@ -87,6 +87,8 @@ const TabAvatar = (props: TypeProps) => {
                   <InputFile
                     {...field}
                     fotoOnLoad={typeof fotoOnLoad === "string" ? fotoOnLoad : ""}
+
+                    label="Avatar"
       
                     onChangeImg={handleChangeImg}
                     onRemoveImg={handleRemoveImg}

@@ -1,5 +1,6 @@
 import DashboardLayout from "@/components/layouts/DashboardLayout";
 import Dashboard from "@/components/views/Owner/Dashboard";
+import AuthService from "@/services/auth.service";
 import dashboardService from "@/services/dashboard.service";
 import { Spinner } from "@heroui/react";
 import { useQuery } from "@tanstack/react-query";
@@ -24,9 +25,20 @@ const useOwnerDashboard = () => {
         return data;
     }
 
+    
 	const {data: dataTrendSales, isLoading: isLoadingTrendSales} = useQuery({
         queryKey:["trendSalesOwner"],
         queryFn: getTrendSales,
+    })
+
+    const getMe = async () => {
+        const {data} = await AuthService.findMyUser();
+        return data;
+    }
+
+    const {data: dataUser, isLoading: isLoadingUser} = useQuery({
+        queryKey:["UserMe"],
+        queryFn: getMe,
     })
 
 	return {
@@ -34,7 +46,10 @@ const useOwnerDashboard = () => {
         isLoadingSummary,
 
         dataTrendSales,
-        isLoadingTrendSales
+        isLoadingTrendSales,
+
+        dataUser,
+        isLoadingUser
 	}
 }
 
@@ -44,11 +59,15 @@ const PageOwnerDashboard = () => {
         isLoadingSummary,
 
         dataTrendSales,
-        isLoadingTrendSales
+        isLoadingTrendSales,
+
+        dataUser,
+        isLoadingUser
     } = useOwnerDashboard();
 
 
-    const isLoading = isLoadingSummary || isLoadingTrendSales;
+    const isLoading = isLoadingSummary || isLoadingTrendSales || isLoadingUser;
+
 
     return (       
         <DashboardLayout title="Dashboard | Owner" description="welcome" role="owner" pageTitle="Dashboard">
@@ -57,7 +76,7 @@ const PageOwnerDashboard = () => {
                 <Spinner color="primary" />
             </div>
           ) : (
-            <Dashboard dataSummary={dataSummary?.data} dataTrendSales={dataTrendSales?.data} />
+            <Dashboard dataSummary={dataSummary?.data} dataTrendSales={dataTrendSales?.data} user={dataUser?.data} />
           )}
         </DashboardLayout>
     )
