@@ -134,7 +134,7 @@ const DetailProduct = () => {
               </CardBody>
 
               <CardFooter>
-                <Button type="submit" className="text-white bg-blue-500">
+                <Button type="submit" className="text-white bg-blue-500" isDisabled={isPendingUpdateProduct}>
                   {isPendingUpdateProduct ? <Spinner color="default" size="sm" /> : "Simpan"}
                 </Button>
               </CardFooter>

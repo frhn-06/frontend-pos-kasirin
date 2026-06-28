@@ -80,7 +80,7 @@ const CreateStore = () => {
           </CardBody>
        
           <CardFooter>
-            <Button type="submit" fullWidth className="bg-blue-400 text-white">
+            <Button type="submit" fullWidth className="bg-blue-400 text-white" isDisabled={isPendingStore}>
               {isPendingStore ? <Spinner size="sm" /> : "Buat"}
             </Button>
           </CardFooter>

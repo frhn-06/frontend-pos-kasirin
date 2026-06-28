@@ -98,7 +98,7 @@ const AddCategory = (props: TypeProps) => {
                 <Button variant="flat" color="warning" onPress={onCloseModal}>
                   Kembali
                 </Button>
-                <Button className="bg-blue-500 text-white" type="submit">
+                <Button className="bg-blue-500 text-white" type="submit" isDisabled={isPendingCreateCategory}>
                   {isPendingCreateCategory ? <Spinner color="default" size="sm" />: "Simpan" }
                 </Button>
               </ModalFooter>

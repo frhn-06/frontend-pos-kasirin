@@ -1,16 +1,20 @@
-import { Button, cn, Link, Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle } from "@heroui/react";
+import { Avatar, Button, cn, Link, Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle } from "@heroui/react";
 import navList from "./navList";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
+import { ISesson } from "@/types/auth";
 
 
 interface TypeProps {
   activeSection: string;
 }
 const NavbarLayout = (props: TypeProps) => {
-
     const {
       activeSection
     } = props;
+
+    const session = useSession();
+    const user = session.data?.user as ISesson;
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -71,16 +75,27 @@ const NavbarLayout = (props: TypeProps) => {
           </NavbarContent>
 
           <NavbarContent justify="end">
-            <NavbarItem>
-              <Button as={Link} href="/auth/login" variant="flat" className={cn("bg-white text-blue-500", {"bg-yellow-500 text-white" : isScroll})}>
-                Login
-              </Button>
-            </NavbarItem>
-            <NavbarItem>
-              <Button as={Link} href="/auth/register" variant="flat" className={cn("hidden sm:flex bg-white text-blue-500", {"bg-yellow-500 text-white" : isScroll,})}>
-                Sign Up
-              </Button>
-            </NavbarItem>
+            {session.status !== "authenticated" && !user ? (
+              <>
+                <NavbarItem>
+                  <Button as={Link} href="/auth/login" variant="flat" className={cn("bg-white text-blue-500", {"bg-yellow-500 text-white" : isScroll})}>
+                    Login
+                  </Button>
+                </NavbarItem>
+                <NavbarItem>
+                  <Button as={Link} href="/auth/register" variant="flat" className={cn("hidden sm:flex bg-white text-blue-500", {"bg-yellow-500 text-white" : isScroll,})}>
+                    Sign Up
+                  </Button>
+                </NavbarItem> 
+              </>
+            ) : (
+              <NavbarItem>
+                <Button as={Link} href={`/${user.role}/dashboard`} variant="flat" className={cn("bg-white text-blue-500", {"bg-yellow-500 text-white" : isScroll})}>
+                  Dashboard
+                </Button>
+              </NavbarItem>
+            )}
+
             <NavbarMenuToggle
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               className={cn("sm:hidden text-white" ,{ "text-black" : isScroll })}

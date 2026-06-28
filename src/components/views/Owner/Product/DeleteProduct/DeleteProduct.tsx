@@ -45,7 +45,7 @@ const DeleteProduct = (props: TypeProps) => {
               <Button color="warning" variant="flat" onPress={onClose}>
                 Kembali
               </Button>
-              <Button color="danger" onPress={onDelete}>
+              <Button color="danger" onPress={onDelete} isDisabled={isPendingDeleteProduct}>
                 {isPendingDeleteProduct ? <Spinner size="sm" color="default" /> : "Hapus"}
               </Button>
             </ModalFooter>

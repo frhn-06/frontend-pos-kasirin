@@ -105,7 +105,7 @@ const TabAvatar = (props: TypeProps) => {
                 )} />
               </div>
 
-              <Button type="submit" className="bg-blue-500 text-white" isDisabled={typeof fotoOnLoad !== "string"}>
+              <Button type="submit" className="bg-blue-500 text-white" isDisabled={typeof fotoOnLoad !== "string" || isPendingUpdateAvatar}>
                 {isPendingUpdateAvatar ? <Spinner size="sm" color="default" /> : "Simpan" }
               </Button>
             </CardBody>

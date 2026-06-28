@@ -116,7 +116,7 @@ const AddProduct = (props: TypeProps) => {
                 <Button variant="flat" color="warning" onPress={onCloseModal}>
                   Kembali
                 </Button>
-                <Button className="bg-blue-500 text-white" type="submit">
+                <Button className="bg-blue-500 text-white" type="submit" isDisabled={isPendingCreateProduct}>
                   {isPendingCreateProduct ? <Spinner color="default" size="sm" />: "Simpan" }
                 </Button>
               </ModalFooter>

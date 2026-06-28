@@ -103,7 +103,7 @@ const DetailCategory = () => {
               </CardBody>
 
               <CardFooter>
-                <Button type="submit" className="text-white bg-blue-500">
+                <Button type="submit" className="text-white bg-blue-500" isDisabled={isPendingUpdateCategory}>
                   {isPendingUpdateCategory ? <Spinner color="default" size="sm" /> : "Simpan"}
                 </Button>
               </CardFooter>

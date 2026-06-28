@@ -51,7 +51,7 @@ const SidebarLayout = (props: TypeProps) => {
 
             <div className="flex flex-col gap-2 p-2">
               {items.map((item) => (
-                <Link key={item.id} href={item.href} className={cn("p-2 flex gap-2 rounded-xl text-blue-600 bg-gray-100 hover:bg-gray-200 transition border-2 border-gray-300/40", {"text-white bg-blue-500 hover:bg-blue-400" : router.pathname.startsWith(item.href)})}>
+                <Link key={item.id} href={item.href} className={cn("p-2 flex gap-2 rounded-xl text-blue-600 bg-gray-100 hover:bg-gray-200 transition border-2 border-gray-300/40 active:bg-blue-300", {"text-white bg-blue-500 hover:bg-blue-400" : router.pathname.startsWith(item.href)})}>
                   <div className="w-7 h-7">
                     {item.icon}
                   </div>
@@ -63,14 +63,14 @@ const SidebarLayout = (props: TypeProps) => {
             </div>
           </div>
           
-          <div className="w-full p-2">
+          {/* <div className="w-full p-2">
             <div onClick={() => signOut()} className="flex gap-2 justify-end items-center p-1 rounded-xl hover:bg-gray-100 text-blue-600 cursor-pointer active:bg-gray-200" >
               <CiLogout className="w-7 h-7" />
               <span>
                 Keluar
               </span>
             </div>
-          </div>
+          </div> */}
           
           
           

@@ -12,7 +12,7 @@ const PaymentSummary = (props: TypeProps) => {
 
     return (
         <div className="w-full max-w-160 flex-1">
-          <Card>
+          <Card className="z-0">
             <CardHeader className="bg-blue-500 p-4">
               <h1 className="font-semibold text-white">
                 Payment

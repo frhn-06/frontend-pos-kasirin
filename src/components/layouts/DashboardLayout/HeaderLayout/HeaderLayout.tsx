@@ -52,15 +52,15 @@ const HeaderLayout = (props: TypeProps) => {
             <PopoverContent>
               <div className="px-1 py-2 flex flex-col gap-1 min-w-32">
                 {user?.role === "owner" ? (
-                  <Link href={`/owner/profile/${user?._id}`} className="font-semibold hover:bg-default-200 py-2 px-3 rounded-lg">
+                  <Link href={`/owner/profile/${user?._id}`} className="font-semibold hover:bg-default-200 py-2 px-3 rounded-lg active:bg-blue-400 active:text-white">
                     Profile
                   </Link>
                 ) : 
-                  <Link href={`/cashier/profile/${user?._id}`} className="font-semibold hover:bg-default-200 py-2 px-3 rounded-lg">
+                  <Link href={`/cashier/profile/${user?._id}`} className="font-semibold hover:bg-default-200 py-2 px-3 rounded-lg active:bg-blue-400 active:text-white">
                     Profile
                   </Link>
                 }
-                <Link href={"/logout"} className="font-semibold hover:bg-default-200 py-2 px-3 rounded-lg" onClick={(e) => {
+                <Link href={"/logout"} className="font-semibold hover:bg-default-200 py-2 px-3 rounded-lg active:bg-blue-400 active:text-white" onClick={(e) => {
                   e.preventDefault();
                   signOut();
                 }}>

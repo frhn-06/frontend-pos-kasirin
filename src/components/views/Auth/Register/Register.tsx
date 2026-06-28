@@ -86,7 +86,7 @@ const Register = () => {
           </CardBody>
 
           <CardFooter>
-            <Button type="submit" fullWidth className="bg-blue-400 text-white">
+            <Button type="submit" fullWidth className="bg-blue-400 text-white" isDisabled={isPendingRegister}>
               {isPendingRegister ? <Spinner size="sm" /> : "Daftar"}
             </Button>
           </CardFooter>

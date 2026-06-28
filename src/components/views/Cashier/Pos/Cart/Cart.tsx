@@ -141,7 +141,7 @@ const Cart = (props: TypeProps) => {
             )}
           </CardBody>
           <CardFooter>
-            <Button type="submit" className="bg-blue-500 text-white" fullWidth isDisabled={carts.length === 0} >
+            <Button type="submit" className="bg-blue-500 text-white" fullWidth isDisabled={carts.length === 0 || isPendingCreateOrder} >
               {isPendingCreateOrder ? <Spinner size="sm" color="default" /> : "Order"}
             </Button>
           </CardFooter>

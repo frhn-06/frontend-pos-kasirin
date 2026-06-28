@@ -48,12 +48,12 @@ const listConstant = {
             href: "/owner/cashier",
             icon: <FaUsers className="w-full h-full" />
         },
-        {
-            id: "setting",
-            label: "Setting",
-            href: "/owner/setting",
-            icon: <IoMdSettings className="w-full h-full" />
-        }
+        // {
+        //     id: "setting",
+        //     label: "Setting",
+        //     href: "/owner/setting",
+        //     icon: <IoMdSettings className="w-full h-full" />
+        // }
     ],
     cashier: [
         {

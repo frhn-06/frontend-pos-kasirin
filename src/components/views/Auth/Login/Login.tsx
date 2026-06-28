@@ -57,7 +57,7 @@ const Login = () => {
             </CardBody>
 
             <CardFooter>
-              <Button type="submit" fullWidth className="bg-blue-400 text-white">
+              <Button type="submit" fullWidth className="bg-blue-400 text-white" isDisabled={isPendingLogin}>
                 {isPendingLogin ? <Spinner size="sm" /> : "Login"}
               </Button>
             </CardFooter>
