@@ -8,17 +8,21 @@ const Activation = (props: {status: "success" | "failed"}) => {
 
     return (
         <>
-          <div className='w-1/2'>
+          <div className='p-4'>
             {status === "success" ? (
               <>
-                <Image src="/auth/success.png" alt='failed' width={1080} height={1080} className='w-full' />
+                <div className='w-1/2 mx-auto'>
+                  <Image src="/auth/success.png" alt='failed' width={1080} height={1080} className='w-full' />
+                </div>
                 <h1 className='text-blue-500 text-center text-xl mt-6 font-semibold'>
                   Aktivasi akun berhasil
                 </h1>
               </>
             ) : (
               <>
-                <Image src="/auth/failed.png" alt='failed' width={1080} height={1080} className='w-full' />
+                <div className='w-1/2 mx-auto'>
+                  <Image src="/auth/failed.png" alt='failed' width={1080} height={1080} className='w-full' />
+                </div>
                 <h1 className='text-blue-500 text-center text-xl mt-6 font-semibold'>
                   Aktivasi akun gagal
                 </h1>
@@ -27,8 +31,8 @@ const Activation = (props: {status: "success" | "failed"}) => {
           </div>
         
           {status === "success" && (
-            <Button as={Link} href='/dashboard' className='bg-yellow-500 text-white fixed bottom-2 right-2'>
-              Dashboard
+            <Button as={Link} href='/auth/login' className='bg-yellow-500 text-white fixed bottom-2 right-2'>
+              Login
             </Button>
           )}
         </>
