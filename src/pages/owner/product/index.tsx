@@ -3,7 +3,7 @@ import Product from "@/components/views/Owner/Product"
 
 const PageOwnerProduct = () => {
     return (
-        <DashboardLayout title="Product | Owner" description="this is product page manegement" role="owner" pageTitle="Product">
+        <DashboardLayout title="Product | Owner" description="Manage your products, pricing, and available stock." role="owner" pageTitle="Product">
           <Product />
         </DashboardLayout>
     )

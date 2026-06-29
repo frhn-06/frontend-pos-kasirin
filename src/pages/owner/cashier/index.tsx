@@ -3,7 +3,7 @@ import Cashier from "@/components/views/Owner/Cashier"
 
 const PageOwnerCashier = () => {
     return (
-        <DashboardLayout title="Cashier | Owner" description="this is cashier page manegement" role="owner" pageTitle="Cashiers">
+        <DashboardLayout title="Cashier | Owner" description="Manage cashier accounts and control staff access." role="owner" pageTitle="Cashiers">
           <Cashier />
         </DashboardLayout>
     )

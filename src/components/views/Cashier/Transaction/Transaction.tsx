@@ -7,6 +7,7 @@ import useTransaction from "./useTransaction";
 import { IItems } from "@/types/order";
 import convert from "@/utils/convert";
 import column_list from "./transaction.constant";
+import CancelTransaction from "./CancelTransaction";
 
 
 const Transaction = () => {
@@ -69,7 +70,7 @@ const Transaction = () => {
         case "totalAmount" :
           return convert.IDR(Number(data.totalAmount));
         case "createdAt" :
-          return convert.TimeInTable(`${data.createdAt}`);
+          return convert.TimeInTable(`${data.createdAt}`) + " WIB";
         case "actions" :
           return (
             <Dropdown>
@@ -143,13 +144,8 @@ const Transaction = () => {
             />
           )}
 
-          {/* <AddProduct isOpen={modalAddTransaction.isOpen} onClose={modalAddTransaction.onClose} refetch={refetchTransactions} /> */}
 
-         
-
-          {/* <DeleteProduct productId={`${idTransaction}`} onClose={modalDeleteTransaction.onClose} isOpen={modalDeleteTransaction.isOpen} refetch={refetchTransactions} /> */}
-
-          {/* <CancelTransaction isOpen={modalCancelTransaction.isOpen} onClose={modalCancelTransaction.onClose} transactionId={`${idTransaction}`} refetch={refetchTransactions} status={`${statusOrder as "cancelled" | "paid"}`} /> */}
+          <CancelTransaction isOpen={modalCancelTransaction.isOpen} onClose={modalCancelTransaction.onClose} transactionId={`${idTransaction}`} refetch={refetchTransactions} status={`${statusOrder as "cancelled" | "paid"}`} />
 
         </div>
     )

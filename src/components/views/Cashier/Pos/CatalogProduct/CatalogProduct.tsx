@@ -3,9 +3,10 @@ import { IoClose, IoSearch } from "react-icons/io5";
 import useCatalogProduct from "./useCatalogProduct";
 import { ICategory } from "@/types/category";
 import { ICartProducts, IProduct } from "@/types/product";
-import { ChangeEvent, SetStateAction, useCallback, useMemo, useState } from "react";
+import { ChangeEvent, SetStateAction, useMemo, useState } from "react";
 import convert from "@/utils/convert";
 import { useRouter } from "next/router";
+import Image from 'next/image';
 
 
 interface TypeProps {
@@ -79,11 +80,24 @@ const CatalogProduct = (props: TypeProps) => {
 
     const renderCardProduct = useMemo(() => {
       return (
-        // <div className="mt-8 grid grid-cols-[repeat(auto-fill,minmax(220px,2fr))] gap-4">
         <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4 ">
+
           {isLoading && Array.from({length: 8}).map((_,i) => (
-            <Skeleton key={i} className="aspect-[3/4] rounded-2xl" />
+            <Card key={i} className="aspect-square p-4 flex flex-col gap-2" radius="lg">
+              <Skeleton className="rounded-lg">
+                <div className="aspect-[4/3] rounded-lg bg-default-300" />
+              </Skeleton>
+              <div className="flex flex-col gap-2">
+                <Skeleton className="w-4/5 rounded-lg">
+                  <div className="h-4 w-4/5 rounded-lg bg-default-200" />
+                </Skeleton>
+                <Skeleton className="w-2/5 rounded-lg">
+                  <div className="h-5 w-1/5 rounded-lg bg-default-300" />
+                </Skeleton>
+              </div>
+            </Card>
           ))}
+
           {dataProducts.map((product:IProduct) => (
             <div key={product._id} onClick={() => onAddCarts({
               id: `${product._id}`, 
@@ -92,21 +106,26 @@ const CatalogProduct = (props: TypeProps) => {
               category: `${product.categoryId?.name}`, 
               price: Number(product.price),
             })}>
-              <Card className="aspect-[3/4] active:scale-98 active:shadow-sm transition duration-200">
-                <CardBody className="gap-2">
-                  <div className="w-full h-2/3">
-                    <img src={product.img} alt="foto-product"  className="object-cover object-center h-full w-full rounded-lg"/>
-                  </div>
-                  <div className=" h-full px-2 flex flex-col justify-between">
-                    <h1 className="font-semibold text-sm line-clamp-1">
-                      {product.name}
-                    </h1>
-                    <Chip color="success" size="sm" className="rounded-lg text-gray-100 text-xs cursor-pointer">
-                      {convert.IDR(product.price as number)}
-                    </Chip>
-                  </div>
-                </CardBody>
-              </Card>
+              <div className="active:scale-98 active:shadow-sm transition duration-200">
+                <Card className="h-fit cursor-pointer bg-blue-500 relative border-1 border-blue-500">
+                  
+                  <div className="absolute h-[97%] w-full top-0 bg-white rounded-b-2xl" />
+
+                  <CardBody className="gap-2">
+                    <div className="aspect-[4/3] overflow-hidden">
+                      <Image src={`${product.img}`} alt="foto-product" width={470} height={470} className="object-cover object-center h-full rounded-lg"/>
+                    </div>
+                    <div className=" h-full px-2 flex flex-col justify-between gap-2">
+                      <h1 className="font-semibold text-sm line-clamp-1">
+                        {product.name}
+                      </h1>
+                      <Chip color="success" size="sm" className="rounded-lg text-gray-100 text-xs cursor-pointer">
+                        {convert.IDR(product.price as number)}
+                      </Chip>
+                    </div>
+                  </CardBody>
+                </Card>
+              </div>
             </div>
           ))}
         </div>

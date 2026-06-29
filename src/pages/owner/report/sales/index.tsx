@@ -3,7 +3,7 @@ import Sales from "@/components/views/Owner/Report/Sales"
 import reportService from "@/services/report.service";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { ChangeEvent, useEffect } from "react";
+import {  useEffect } from "react";
 
 const useSales = () => {
     const router = useRouter();
@@ -62,7 +62,7 @@ const PageOwnerReportSales = () => {
 
 
     return (
-        <DashboardLayout title="Report Sales | Owner" description="this is report sales of this bussines" role="owner" pageTitle="Report Sales">
+        <DashboardLayout title="Report Sales | Owner" description="Review sales performance with detailed transaction summaries and export options." role="owner" pageTitle="Sales Report">
             <Sales 
                 data={dataReportSales?.data} 
                 isLoading={isLoadingReportSales}

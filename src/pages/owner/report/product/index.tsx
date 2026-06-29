@@ -1,10 +1,9 @@
 import DashboardLayout from "@/components/layouts/DashboardLayout"
 import Product from "@/components/views/Owner/Report/Product";
-import Sales from "@/components/views/Owner/Report/Sales"
 import reportService from "@/services/report.service";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { ChangeEvent, useEffect } from "react";
+import {  useEffect } from "react";
 
 const useProduct = () => {
     const router = useRouter();
@@ -63,7 +62,7 @@ const PageOwnerReporttProduct= () => {
 
 
     return (
-        <DashboardLayout title="Report Sales | Owner" description="this is report sales of this bussines" role="owner" pageTitle="Report Sales">
+        <DashboardLayout title="Report Sales | Owner" description="Analyze product performance and identify your best-selling items." role="owner" pageTitle="Product Report">
             <Product 
                 data={dataReportProduct?.data} 
                 isLoading={isLoadingReportProduct}

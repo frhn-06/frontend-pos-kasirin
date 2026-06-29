@@ -3,7 +3,7 @@ import Transaction from "@/components/views/Owner/Transaction"
 
 const PageOwnerTransaction = () => {
     return (
-        <DashboardLayout title="Transaction | Owner" description="this is transaction page manegement" role="owner" pageTitle="Transaction history">
+        <DashboardLayout title="Transaction | Owner" description="Review sales history and track every completed transaction." role="owner" pageTitle="Transactions">
           <Transaction />
         </DashboardLayout>
     )

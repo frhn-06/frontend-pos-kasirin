@@ -3,7 +3,7 @@ import Profile from "@/components/views/Owner/Profile";
 
 const PageOwnerProfile = () => {
     return (
-        <DashboardLayout title="Owner | Profile" role="owner" pageTitle="My Profile" description="manage my profile">
+        <DashboardLayout title="Owner | Profile" role="owner" pageTitle="Profile" description="View and update your personal information and account settings.">
             <Profile />
         </DashboardLayout>
     )

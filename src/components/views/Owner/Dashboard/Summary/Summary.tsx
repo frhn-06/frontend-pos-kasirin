@@ -15,9 +15,9 @@ const Summary = (props: TypeProps) => {
         <div className="flex flex-wrap">
           <div className="w-1/2 sm:max-w-71 p-2 lg:p-3">
             <Card className="p-1 sm:p-2 shadow-lg shadow-blue-700/60 border-1 border-blue-500 relative bg-blue-500">
-              <div className="bg-white absolute top-0 l-0 w-full h-full rounded-l-2xl">
+            
+              <div className="bg-white absolute top-0 l-0 w-full h-full rounded-l-2xl" />
 
-              </div>
               <CardBody className="gap-4">
                 <h2 className="flex-1 font-semibold lg:text-lg">
                   Total Pemasukan

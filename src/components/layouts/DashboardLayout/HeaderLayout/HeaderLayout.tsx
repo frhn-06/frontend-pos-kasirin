@@ -34,7 +34,7 @@ const HeaderLayout = (props: TypeProps) => {
               <h1 className="font-bold text-xl">
                 {pageTitle}
               </h1>
-              <h2 className="text-gray-500 text-sm">
+              <h2 className="text-gray-500 text-sm line-clamp-1">
                 {description}
               </h2>
 

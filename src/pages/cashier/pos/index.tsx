@@ -4,7 +4,7 @@ import Pos from "@/components/views/Cashier/Pos";
 
 const PageCashierPos = () => {
     return (       
-        <DashboardLayout title="Pos | Cashier" description="Pos Order" role="cashier" pageTitle="Pos Order">
+        <DashboardLayout title="Pos | Cashier" description="Create transactions quickly and serve customers efficiently." role="cashier" pageTitle="Pos Order">
             <Pos />
         </DashboardLayout>
     )
