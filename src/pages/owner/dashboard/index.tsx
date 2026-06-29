@@ -70,7 +70,7 @@ const PageOwnerDashboard = () => {
 
 
     return (       
-        <DashboardLayout title="Dashboard | Owner" description="Monitor your business performance, sales, and store activity." role="owner" pageTitle="Dashboard">
+        <DashboardLayout title="Dashboard | Owner" description="Monitor your business performance, sales, and store activity." role="owner" pageTitle="Owner Dashboard">
           {isLoading ? (
             <div className="w-full min-h-screen flex justify-center items-center">
                 <Spinner color="primary" />

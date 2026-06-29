@@ -68,7 +68,7 @@ const PageCashierDashboard = () => {
     const isLoading = isLoadingPaymentSummary || isLoadingSummary || isLoadingUser;
 
     return (       
-        <DashboardLayout title="Dashboard | Cashier" description="Monitor today's sales, recent orders, and payment summary." role="cashier" pageTitle="Dashboard">
+        <DashboardLayout title="Dashboard | Cashier" description="Monitor today's sales, recent orders, and payment summary." role="cashier" pageTitle="Cashier Dashboard">
           {isLoading ? (
             <div className="w-full min-h-screen flex justify-center items-center">
                 <Spinner color="primary" />
