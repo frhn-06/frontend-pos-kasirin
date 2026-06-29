@@ -37,7 +37,7 @@ const PreviewsSection = () => {
                   transition={{duration:0.6}}
                   viewport={{once:true, amount:0.3}}
                 >
-                  <Image src={`/landing-page/hero-owner.png`} alt="foto-previews" width={1080} height={1080} className="w-full group-hover:scale-104 group-hover:translate-x-10 group-hover:-translate-y-2 group-hover:shadow-xl shadow-blue-600/50 group-hover:border-1 border-blue-500 transition-all duration-200" />
+                  <Image src={`/landing-page/dashboard-owner.png`} alt="foto-previews" width={1080} height={1080} className="w-full group-hover:scale-104 group-hover:translate-x-10 group-hover:-translate-y-2 group-hover:shadow-xl shadow-blue-600/50 group-hover:border-1 border-blue-500 transition-all duration-200" />
                 </motion.div>
 
                 <motion.div className="flex-1 min-w-xs"
@@ -80,7 +80,7 @@ const PreviewsSection = () => {
                   transition={{duration:0.6}}
                   viewport={{once:true, amount:0.3}}
                 >
-                  <Image src={`/landing-page/hero-cashier.png`} alt="foto-previews" width={1080} height={1080} className="w-full group-hover:scale-104 group-hover:-translate-x-10 group-hover:-translate-y-2 group-hover:shadow-xl shadow-blue-600/50 group-hover:border-1 border-blue-500 transition-all duration-200" />
+                  <Image src={`/landing-page/dashboard-cashier.png`} alt="foto-previews" width={1080} height={1080} className="w-full group-hover:scale-104 group-hover:-translate-x-10 group-hover:-translate-y-2 group-hover:shadow-xl shadow-blue-600/50 group-hover:border-1 border-blue-500 transition-all duration-200" />
                 </motion.div>
 
                 <motion.div className="flex-1 min-w-xs"

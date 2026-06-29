@@ -2,7 +2,7 @@ import listFooter from "./listFooter";
 import Link from "next/link";
 import { motion } from "motion/react";
 
-const FooterLayout = () => {
+const FooterLayout = () => { 
     return (
         <motion.section className="min-h-36 bg-blue-800"
           initial={{opacity:0, y:30}}
@@ -13,9 +13,9 @@ const FooterLayout = () => {
           <div className="py-6 flex flex-col gap-6">
             <div className="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8 border-b-1 border-b-gray-300">
               <div>
-                <div className="w-1/2 min-h-16 bg-gray-400 mb-3">
-                  <div className="w-full h-full border-4 border-default-800 flex justify-center items-center text-default-800">
-                    <h1 className="text-2xl">
+                <div className="w-1/2 min-h-16 mb-3">
+                  <div className="w-full h-full border-4 border-white flex justify-center items-center text-default-800 p-2">
+                    <h1 className="text-xl text-white font-bold">
                       POS KASIRIN
                     </h1>
                   </div>
